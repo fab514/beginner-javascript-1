@@ -7,14 +7,28 @@ const people = [
 people.forEach((person, index) => {
   console.log(person.name);
 });
+// people.forEach((person, index) => {
+//   if (person.name === 'Wes') {
+//     console.error('dumb name');
+//   }
+// });
+// people.forEach((person, index) => {
+//   console.groupCollapsed(`${person.name}`);
+//   console.log(person.country);
+//   console.log(person.cool);
+//   console.log(`Done!!`);
+//   console.groupEnd(`${person.name}`);
+// });
+
+// console.table(people);
 
 // Console Methods
 
-// Callstack
+// Callstack, Stack trace
 
 // Grabbing Elements
 
-// Breakpoints
+// Breakpoints, debugger
 
 // Scope
 
@@ -24,18 +38,37 @@ people.forEach((person, index) => {
 
 // Some Setup Code
 
+// function doALotOfStuff() {
+//   console.group('Doing Some Stuff');
+//   console.log('I am the one.');
+//   console.warn('Watch Out!!');
+//   console.error('Hey!');
+//   console.groupEnd('Doing Some Stuff');
+// }
+// function doctorize(name) {
+//   // console.count('running doctorize');
+//   return `Dr. ${name}`;
+// }
 function doctorize(name) {
+  //   console.count(`running doctorize for ${name}`);
   return `Dr. ${name}`;
 }
 
 function greet(name) {
-  doesntExist();
+  // eslint-disable-next-line no-undef
+  doesntExist(); // Will be an error
   return `Hello ${name}`;
 }
-
+// Order within each function go-doctorize-greet-doesn't exist.
+// With this doesn't exist go function will cause an error.
 function go() {
   const name = doctorize(greet('Wes'));
   console.log(name);
+}
+// eslint-disable-next-line no-unused-vars
+function bootstrap() {
+  console.log('Starting the App!');
+  go();
 }
 
 const button = document.querySelector('.bigger');
