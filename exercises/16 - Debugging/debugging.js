@@ -85,7 +85,9 @@ async function fetchDadJoke() {
       Accept: 'text/plain',
     },
   });
+  debugger;
   const joke = await res.text();
   console.log(joke);
   return joke;
 }
+fetchDadJoke()
