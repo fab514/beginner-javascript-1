@@ -79,6 +79,7 @@ console.log(pizzaList.textContent);
 ```
 # node vs. elements
 - everything in js is a node. Each line will be considered a node. A node is upgraded to an element when it's surrounded by tags. 
+- On Mozzilla you can look up different methods for both node and elements. 
 
 ```js
 I am a node
@@ -86,6 +87,69 @@ node me too
 node me three!
 <p>I am an element!</p>
 ```
+
+# Class
+- Using pic.classList you will get the output of what classes are located in the picture element. Rememeber that document.querySelector will find the specified element on your document. The classList will show you options for how to work with the classes. 
+- classList.toggle used within the console. If the class is already added it will be removed, if the class is already moved it will be added. You can access this by putting pic.classList.toggle('round') within the console. The site will show the round class on the pic switching on and off each time you insert toggle. 
+- types of classList commands include add, remove and contain. Contain is used within the console where you put in if a class is current.
+- className will only show you the class names in an element but you will not be able to manipulate the classes like you can in classList. 
+
+
+```md
+<img class="nice cool" src="https://picsum.photos/600" />
+```
+```js
+const pic = document.querySelector('.nice');
+console.log(pic.classList);
+pic.classList.toggle('round');
+```
+- Adding an event to your to you classList. The following event will toggle the the round function to turn off and on when you click the picture. 
+
+```js
+function toggleRound() { // toggleRound is the functions name. 
+    pic.classList.toggle('round'); // the classList toggle will turn the class round on and off.
+}
+pic.addEventListener('click', toggleRound); // the event sets off the toggle whenever the image is clicked. 
+```
+
+# Working with Attributes. 
+- Reminder that attributes are used to further describe an element. such as class, src, alt etc. 
+
+- There are setters and getters. setters gives new information for the getter to recieve a big one being console.log. 
+- When coming to the natural width or any information on an image the js code will be run before an image is fully loaded. the natural width will log as 0 right away and change to the width when you runn back in the pic.naturalWidth. This can be fixed by adding an event. 
+
+```js
+pic.alt ('rando image'); // setter 
+console.log(pic.alt); // getter
+console.log(pic.naturalWidth); // getter
+
+window.addEventListener('load', function() {
+    console.log(pic.naturalWidth);
+})
+
+```
+## getAttribute, setAttribute
+- Rarely use the set or get attribute. It is best to use the attributes used by everyone instead of making your own. This will avoid bugs. SetAttribute names your own attribute instead of using alt, class etc.
+
+
+```js
+pic.setAttribute('fe-is-cool', 'really random picture');
+console.log(pic.getAttribute('alt')); 
+```
+## Puting custom text in your meta data and dataSet. 
+- Use .dataSet if you want to access the data attributes.
+- You can add meta data to any element by using data- . The data- can be put with anything to describe the data your inserting. data-name= 'felicia' data-describe= 'tired' 
+
+<img data-name='felicia' src="https://picsum.photos/200" />
+
+```js
+const custom = document.querySelector('.custom');
+console.log(custom.dataset)
+```
+
+
+
+
 
 
 
