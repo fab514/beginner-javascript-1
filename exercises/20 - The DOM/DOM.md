@@ -198,6 +198,34 @@ li1.insertAdjacentElement('afterend', li2);
 ## Creating with Strings
 - use .innerHTML with `backticks` for a more efficient way to create an HTML block. 
 
+```js
+const item = document.querySelector('.item');
+
+item.innerHTML = `
+    <div>
+        <h1>Hey, how are you?!</h1>
+    </div>
+`;
+console.log(item.innerHTML);
+```
+
+## You can create a HTML template and insert elements into the template.
+- Downside is that this is a string instead of being elements. So you will not be able to set classes to it.  
+
+```js
+const width = 500;
+const src = `https://picsum.photos/${width}`;
+const desc = `Cute Pup`;
+const myHTML = `
+    <div class="wrapper">
+        <h2>Cute ${desc}</h2>
+        <img src="${src}" alt="${desc}"/>
+    </div>
+`;
+
+item.innerHTML = myHTML;
+console.log(item.innerHTML);
+
 
 
 
