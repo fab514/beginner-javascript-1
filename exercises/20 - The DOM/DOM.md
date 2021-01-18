@@ -146,7 +146,29 @@ console.log(pic.getAttribute('alt'));
 const custom = document.querySelector('.custom');
 console.log(custom.dataset)
 ```
+## Creating HTML 
+- When creating HTML such as a paragraph, you need to put in content or the paragraph will not show on the browser. 
 
+```js
+const myParagraph = document.createElement('p'); // this will only create an HTML element.
+myParagraph.textContent = 'I am a P'; // adds paragraph text
+myParagraph.classList.add('special'); // Added a class of special
+console.log(myParagraph); // shows this paragraph in console. 
+
+const myImage = document.createElement('img'); // creates an image element
+myImage.src = 'https://picsum.photos/500'; // source of the image
+myImage.alt = 'Nice Photo'; // alternate text of the image. 
+
+const myDiv = document.createElement('div'); // creates div element
+myDiv.classList.add('wrapper'); // adds a wrapper (treats element like an object) to the div element.
+console.log(myDiv); // shows myDiv in console. 
+
+// puts elements myParagraph and myImage into the myDiv object
+myDiv.appendChild(myParagraph); 
+myDiv.appendChild(myImage);
+
+// puts the myDiv object on the DOM(can be seen on the page.) Putting the elements within myDiv will allow the apendChild to be run once. 
+document.body.appendChild(myDiv);
 
 
 
