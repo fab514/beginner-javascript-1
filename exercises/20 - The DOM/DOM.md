@@ -226,6 +226,22 @@ const myHTML = `
 item.innerHTML = myHTML;
 console.log(item.innerHTML);
 
+```
+## This is a way you can manipulate a HTML template as an element. 
+
+```js
+
+item.innerHTML = myHTML;
+
+const itemImage = document.querySelector('.wrapper img');
+
+itemImage.classList.add('round');
+
+console.log(itemImage);
+
+item.innerHTML = myHTML;
+console.log(item.innerHTML);
+
 
 
 

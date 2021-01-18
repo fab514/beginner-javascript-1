@@ -10,16 +10,5 @@ const myHTML = `
     </div>
 `;
 
-console.log(myHTML.classList);
-console.log(typeof myHTML);
 
-item.innerHTML = myHTML;
 
-const itemImage = document.querySelector('.wrapper img');
-
-itemImage.classList.add('round');
-
-console.log(itemImage);
-
-item.innerHTML = myHTML;
-console.log(item.innerHTML);
