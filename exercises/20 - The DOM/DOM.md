@@ -170,6 +170,33 @@ myDiv.appendChild(myImage);
 // puts the myDiv object on the DOM(can be seen on the page.) Putting the elements within myDiv will allow the apendChild to be run once. 
 document.body.appendChild(myDiv);
 
+// This is a very long way to code a unordered list through js.
+const list = document.createElement('ul');
+const li = document.createElement('li');
+li.textContent = 'Three';
+list.appendChild(li)
+
+document.body.insertAdjacentElement('afterbegin', list);
+const li5 = document.createElement('li');
+li5.textContent = 'Five';
+list.append(li5);
+
+const li1 = li5.cloneNode(true);
+li1.textContent = 'One';
+list.insertAdjacentElement('afterbegin', li1);
+
+const li4 = document.createElement('li');
+li4.textContent = 'Four';
+li5.insertAdjacentElement('beforebegin', li4);
+
+const li2 = document.createElement('li');
+li2.textContent = 'Two';
+li1.insertAdjacentElement('afterend', li2);
+
+```
+
+## Creating with Strings
+- use .innerHTML with `backticks` for a more efficient way to create an HTML block. 
 
 
 
