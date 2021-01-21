@@ -242,6 +242,21 @@ console.log(itemImage);
 item.innerHTML = myHTML;
 console.log(item.innerHTML);
 
+```
+## Turning a string into a DOM element
+- A range is a set of element that can be used. A range will be found in the console
+
+```js
+const myFragment = document.createRange()
+.createContextualFragment(myHTML);
+console.log(myFragment)
+// Strings that were turned into elements will not be seen on the browser however we can use them like we use normal elements in the console. 
+
+console.log(myFragment.querySelector('img'));
+console.log(myFragment);
+```
+
+
 
 
 

@@ -10,5 +10,9 @@ const myHTML = `
     </div>
 `;
 
+// turn a string into a DOM element 
+const myFragment = document.createRange()
+.createContextualFragment(myHTML);
 
-
+// We want to append the fragment(element) not the string
+document.body.appendChild(myFragment);
