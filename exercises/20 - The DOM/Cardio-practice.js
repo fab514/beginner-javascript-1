@@ -85,10 +85,13 @@ let cardsHTML = generatePlayerCard('wes', 12, 150);
 cardsHTML += generatePlayerCard('fe', 30, 150);
 cardsHTML += generatePlayerCard('andrew', 30, 150);
 cardsHTML += generatePlayerCard('houdini', 30, 150);
+console.log(cardsHTML);
+cards.innerHTML = cardsHTML;
 
 // append those cards to the div
 
 // put the div into the DOM just before the wrapper element
+div.insertAdjacentElement('beforebegin', cards);
 // Bonus, put a delete Button on each card so when you click it, the whole card is removed
 
 // select all the buttons!
