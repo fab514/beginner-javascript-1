@@ -256,9 +256,54 @@ console.log(myFragment.querySelector('img'));
 console.log(myFragment);
 ```
 
+<p class="wes">I am Wes, I <em>love</em> to bbq</p>
 
+```js
+const wes = document.querySelector('.wes');
 
+// Will only show the em tag (or any added tag) within the wes element
+console.log(wes.children);
+// Will show each node inside the wes element. Text, EM, Text
+//<p class="wes">I am Wes, I <em>love</em>to bbq</p>
+console.log(wes.childNodes);
+``` 
+-- Note that you can use the $0 on anything selected in the elements tab of the browser as a shortcut to look up that element in the console. You have to click on the element in the elements tab in order for the shortcut to work in the console. 
 
+## the children tags below can be used to navigate between elements in place of the querySelector however querySelector is easier to search for a certain element. 
+```js
+const wes = document.querySelector('.wes');
+
+// Will only show the em tag (or any added tag) within the wes element
+console.log(wes.children);
+console.log(wes.firstElementChild);
+console.log(wes.lastElementChild);
+console.log(wes.previousElementSibling);
+console.log(wes.nextElementSibling);
+console.log(wes.parentElement);
+// Will show each node inside the wes element. Text, EM, Text
+//<p class="wes">I am Wes, I <em>love</em>to bbq</p>
+console.log(wes.childNodes);
+```
+
+## removing elements.
+- You can remover elements in a browser by using remove. Remember you can use $0 as a shortcut to the selected element. Below will remove the heading 2 element from the browser. 
+$0
+<h2>...</h2>
+$0.remove()
+
+- You can also remove an element created through javascript. When you remove that element it will no longer appear on the browser however, if you console.log that deleted element it still shows in the console. It is saved in the js memory so it could be used again. 
+```js
+
+// Can a created JS element also be removed?
+const p = document.createElement('p');
+p.textContent = 'I will be removed';
+document.body.appendChild(p);
+
+p.remove();
+
+console.log(p);
+
+document.body.appendChild(p);
 
 
 
