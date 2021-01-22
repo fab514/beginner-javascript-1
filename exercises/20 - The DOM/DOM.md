@@ -155,9 +155,13 @@ myParagraph.textContent = 'I am a P'; // adds paragraph text
 myParagraph.classList.add('special'); // Added a class of special
 console.log(myParagraph); // shows this paragraph in console. 
 
-const myImage = document.createElement('img'); // creates an image element
-myImage.src = 'https://picsum.photos/500'; // source of the image
-myImage.alt = 'Nice Photo'; // alternate text of the image. 
+const img = document.createElement('img'); // creates an image element
+img.src = 'https://picsum.photos/500'; // source of the image
+img.alt = 'Nice Photo'; // alternate text of the image. 
+// To add a class to your image use classList.add
+img.classList.add('cute');
+// To add an image to an already created div element use 
+div.appendChild('img');
 
 const myDiv = document.createElement('div'); // creates div element
 myDiv.classList.add('wrapper'); // adds a wrapper (treats element like an object) to the div element.
@@ -167,7 +171,7 @@ console.log(myDiv); // shows myDiv in console.
 myDiv.appendChild(myParagraph); 
 myDiv.appendChild(myImage);
 
-// puts the myDiv object on the DOM(can be seen on the page.) Putting the elements within myDiv will allow the apendChild to be run once. 
+// puts the myDiv object on the DOM(can be seen on the page.) Putting the elements within myDiv will allow the apendChild to be run once. All child elements will also show. 
 document.body.appendChild(myDiv);
 
 // This is a very long way to code a unordered list through js.
@@ -192,6 +196,15 @@ li5.insertAdjacentElement('beforebegin', li4);
 const li2 = document.createElement('li');
 li2.textContent = 'Two';
 li1.insertAdjacentElement('afterend', li2);
+
+// Short way to create a list
+  const ul = `<ul>
+    <li>One</li>
+    <li>Two</li>
+    <li>Three</li>
+    </ul>`;
+div.innerHTML = ul;
+console.log(div);
 
 ```
 
@@ -304,6 +317,27 @@ p.remove();
 console.log(p);
 
 document.body.appendChild(p);
+```
+## From CARDIO
+```js
 
+const myHTML = `
+<div class="myDiv">
+    <p>Hello my name is Felicia!</p>
+    <p.>What is your name?</p>
+</div>
+`;
 
+// put this div before the unordered list from above. 
+// You have to turn the myHTML string into an element. 
+const ulElement = div.querySelector('ul');
+console.log(ulElement)
+// After turning the ul string into an element you can use it as an element.
+ulElement.insertAdjacentHTML('beforebegin', myHTML);
+
+// add a class to the second paragraph called warning
+const myDiv = div.querySelector('.myDiv');
+console.log(myDiv);
+// remove the first paragraph
+myDiv.firstElementChild.remove();
 
