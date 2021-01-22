@@ -60,6 +60,15 @@ myDiv.firstElementChild.classList.remove();
 
 // create a function called generatePlayerCard that takes in three arguments: name, age, and height
 // Do this by using a template.
+function generatePlayerCard(name, age, height) {
+    const html = `
+        <div class="playerCard">
+            <h2>${name} - ${age}</h2>
+            <p>They are ${height} and ${age} years old. In dog years this person would be ${age * 7}. That would be a tall dog!</p>
+        </div>
+        `;
+        return html;
+}
 // have that function return html that looks like this:
 // <div class="playerCard">
 //   <h2>NAME — AGE</h2>
@@ -69,9 +78,13 @@ myDiv.firstElementChild.classList.remove();
 
 
 // make a new div with a class of cards
-
-
+const cards = document.createElement('div');
+cards.classList.add('cards');
 // make 4 player cards using generatePlayerCard
+let cardsHTML = generatePlayerCard('wes', 12, 150);
+cardsHTML += generatePlayerCard('fe', 30, 150);
+cardsHTML += generatePlayerCard('andrew', 30, 150);
+cardsHTML += generatePlayerCard('houdini', 30, 150);
 
 // append those cards to the div
 
