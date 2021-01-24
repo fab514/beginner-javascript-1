@@ -19,23 +19,23 @@ butts.removeEventListener('click', handleClick);
 // button query selector will usually be put toward the top of a file. 
 const buyButtons = document.querySelectorAll('button.buy');
 
-function buyItem() {
-    console.log('BUYING ITEM');
+function handleBuyButtonClick(event) {
+    // console.log(button.textContent);
+    // console.log(event.target.dataset.price); // this is a string
+    const button = event.target;
+    console.log(event.currentTarget);
+    console.log(event.target === event.currentTarget); // same element
+    console.log('You are buying it!');
+    // Stop this event from bubbling up
+    event.stopPropagation(); // stops an event from happening
 }
-// The parameter buyButton can be named anything as long as it is referenced.
-function attachListenerBuyButtonClick(buyButton) {
-    console.log('Binding the Buy Button');
-    buyButton.addEventListener('click', buyItem);
-}
-console.log(buyButtons);
-console.dir(butts);
-// buyButtons.addEventListener('click', buyItem);
 
-// buyButtons.forEach(attachListenerBuyButtonClick);
-
-// arrow functions
-buyButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-        console.log('YOU CLICKED IT');
-    });
+buyButtons.forEach(function(buyButton) {
+    buyButton.addEventListener('click', handleBuyButtonClick);
 });
+
+window.addEventListener('click', function(event) {
+    console.log('You clicked the Window');
+    console.log(event.target); // will show which element has been clicked
+})
+

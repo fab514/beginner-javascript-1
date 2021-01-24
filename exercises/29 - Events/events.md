@@ -90,3 +90,44 @@ buyButtons.forEach((button) => {
         console.log('YOU CLICKED IT');
     });
 });
+```
+
+## adding data to event listener
+- listen for an event on multiple items.
+- button query selector will usually be put toward the top of a file. 
+- target willshow which button has been clicked. dataset will show the data attached to the clicked button and price will show the price attached to the clicked button.
+- click is a type of a pointer event.
+- event object (get information from button clicked) object filled with information and methods working with an event. 
+- Modify the callback to accept a parameters(placeholders-first argument of the callback)
+```js
+const buyButtons = document.querySelectorAll('button.buy');
+
+function handleBuyButtonClick(event) {
+    console.log('You are buying it!');
+    console.log(event.target.dataset.price);
+    
+}
+
+buyButtons.forEach(function(buyButton) {
+    buyButton.addEventListener('click', handleBuyButtonClick);
+})
+
+```
+## event.target vs. event.currentTarget
+- currentTarget should be used the target
+- event.target and event.currentTarget difference is when something is nested within the element.
+- event.target will be active when the button is clicked, the event.currentTarget will show is the main target or the nested target has been clicked.
+```js
+function handleBuyButtonClick(event) {
+    // console.log(button.textContent);
+    // console.log(event.target.dataset.price); // this is a string
+    const button = event.target;
+    console.log(event.currentTarget);
+    console.log(event.target === event.currentTarget); // same element
+    
+    console.log('You are buying it!');    
+}
+window.addEventListener('click', function() {
+    console.log('You clicked the Window');
+}) // will show if the user clicked on the window. Propagation, when a couple different events can be fired at the same time.
+// Example the button will show the window being clicked and the button being clicked.
