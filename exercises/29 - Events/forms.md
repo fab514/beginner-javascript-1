@@ -46,3 +46,24 @@ signupForm.addEventListener('submit', function(event) { // add event listener to
     console.log(event.currentTarget.email.value);
     console.log(event.currentTarget.agree.checked);
 });
+```
+## Stages of the keys being pressed. 
+```js
+function logEvent(event) {
+    console.log(event.type); 
+    console.log(event.currentTarget.value); // name of the event and what the user typed in. 
+}
+signupForm.name.addEventListener('keyup', logEvent);
+signupForm.name.addEventListener('keydown', logEvent);
+signupForm.name.addEventListener('focus', logEvent);
+signupForm.name.addEventListener('blur', logEvent);
+'keyup' // key is released
+'keydown' // Key is on it's way down
+'keypress' // while the key is being pressed.  
+'focus' //An element receives the focus when the user either clicks on it or uses the Tab key on the keyboard.
+'blur' //The moment of losing the focus (“blur”) can be even more important. That’s when a user clicks somewhere else or presses Tab to go to the next form field, or there are other means as well.
+```
+
+## Accessibilty
+- making a website accessible for everyone. Especially people with vision problem.
+- Common mistake using an <a href> tag for a button. <a> tags are used to leave the website and buttons are used to insert information.

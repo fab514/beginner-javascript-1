@@ -25,12 +25,15 @@ signupForm.addEventListener('submit', function(event) { // add event listener to
 });
 
 function logEvent(event) {
-    console.log(event.type);
-    console.log(event.currentTarget.value);
+    console.log(event.type); 
+    console.log(event.currentTarget.value); // name of the event and what the user typed in. 
 }
 signupForm.name.addEventListener('keyup', logEvent);
 signupForm.name.addEventListener('keydown', logEvent);
-// 'keyup'
-// 'keydown'
-// 'focus'
-// 'blur'
+signupForm.name.addEventListener('focus', logEvent);
+signupForm.name.addEventListener('blur', logEvent);
+// 'keyup' 
+// 'keydown' 
+// 'keypress'   
+// 'focus' 
+// 'blur' 
