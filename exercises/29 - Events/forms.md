@@ -67,3 +67,5 @@ signupForm.name.addEventListener('blur', logEvent);
 ## Accessibilty
 - making a website accessible for everyone. Especially people with vision problem.
 - Common mistake using an <a href> tag for a button. <a> tags are used to leave the website and buttons are used to insert information.
+- To find the meta data of each key Wes Bos has a site called keycode.info
+- You should also give the accesibilty of a user that doesn't have a mouse to click buy using tab keys. 
