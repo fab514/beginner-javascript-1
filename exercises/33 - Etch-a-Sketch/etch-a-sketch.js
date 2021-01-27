@@ -16,6 +16,8 @@ ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
 ctx.lineWidth = MOVE_AMOUNT;  
 
+let hue = 0;
+ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
 ctx.beginPath() // will start the drawing
 ctx.moveTo(x, y); // Using x, y will can be set up withing Math commands. 
 ctx.lineTo(x, y);
@@ -25,6 +27,10 @@ ctx.stroke();
 // Write a draw function
 // Draw line using Arrow keys
 function draw({ key }) {  
+    // increment the hue
+    hue += 10; 
+    ctx.strokeStyle = `hsl(${Math.random() * 360}, 100%, 50%)`; 
+    // even though used before the code will not automatically notice the change. You need to specifically add it to the stroke style. 
     console.log(key);
     // start the path
     ctx.beginPath();
@@ -60,7 +66,18 @@ function handleKey(e) {
     }
     
 }
-// clear/shake function
+// clear/shake function // check css for the shake.
+function clearCanvas() {
+    canvas.classList.add('shake');
+    ctx.clearRect(0, 0, width, height); // will remove some or all of the canvas. 
+    canvas.addEventListener('animationend', 
+    function() {
+        console.log('Done the Shake');
+        canvas.classList.remove('shake');
+    }, 
+    { once: true });
+}
 
 // listen for arrow keys
 window.addEventListener('keydown', handleKey);
+shakebutton.addEventListener('click', clearCanvas);
