@@ -29,7 +29,7 @@ ctx.stroke();
 function draw({ key }) {  
     // increment the hue
     hue += 10; 
-    ctx.strokeStyle = `hsl(${Math.random() * 360}, 100%, 50%)`; 
+    ctx.strokeStyle = `hsl(${Math.random() * 150}, 100%, 50%)`; 
     // even though used before the code will not automatically notice the change. You need to specifically add it to the stroke style. 
     console.log(key);
     // start the path
