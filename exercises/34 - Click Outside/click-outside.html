@@ -32,9 +32,10 @@
     </div>
 
   </div>
-
+<!-- A model box shows a box infront of the browser with any message text you add into it. Looks like a popup. -->
   <div class="modal-outer">
     <div class="modal-inner">
+      <p>Testing content for models!</p>
 
     </div>
   </div>
@@ -57,6 +58,37 @@
     }
     .card h2 {
       color: black;
+    }
+    
+    .modal-outer {
+      display: grid;
+      background: hsla(50, 100%, 50%, 0.7);
+      position: fixed;
+      height: 100vh;
+      width: 100vw;
+      top: 0;
+      left: 0;
+      justify-content: center;
+      align-items: center;
+      /* hide this modal until you need it */
+      opacity: 0; 
+      pointer-events: none;
+      transition: opacity 0.2s;
+      /* Pointer events will allow you to use the browser even though the inner modal is still there. Opacity fades the box so you can not see it. */
+    }
+
+    .modal-outer.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .modal-inner {
+      max-width: 600px;
+      min-width: 400px;
+      padding: 2rem;
+      border-radius: 5px;
+      min-height: 500px;
+      background: white;
+
     }
   </style>
   <script src="./click-outside.js"></script>
