@@ -74,9 +74,10 @@
       opacity: 0; 
       pointer-events: none;
       transition: opacity 0.2s;
-      /* Pointer events will allow you to use the browser even though the inner modal is still there. Opacity fades the box so you can not see it. */
     }
-
+    .modal-outer img {
+      width: 100%;
+    }
     .modal-outer.open {
       opacity: 1;
       pointer-events: all;
@@ -88,7 +89,12 @@
       border-radius: 5px;
       min-height: 500px;
       background: white;
-
+      transform: translateY(-200%); 
+      /* brings modal above the screen, the transition 2s into the tranform back to 0, normal position.  */
+      transition: transform 2s;
+    }
+    .modal-outer.open .modal-inner {
+      transform: translateY(0);
     }
   </style>
   <script src="./click-outside.js"></script>
