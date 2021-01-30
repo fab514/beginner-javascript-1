@@ -65,3 +65,8 @@ function handleTabClick(event) {
 }
 
 tabButtons.forEach(button => button.addEventListener('click', handleTabClick));
+
+const tabPanel = tabs.querySelector(`
+    [aria-labeledby="ruby"]`); // will show ruby label but will not show the panels of the others
+    console.log(tabPanel);
+    tabPanel.hidden = false;
