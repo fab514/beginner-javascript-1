@@ -82,7 +82,39 @@ const name = 'felicia';
 
 ## Truthy or Falsie
 
+  * empty array
+  <!-- Empty array will be truthie but you can find the inside using length. let score = [] ; score.length will come up as 0 when ran and if it is ran again it will come up as falsie.  -->
+  * empty object
 
+  <!-- An empty object {} will start as truthy however if you put Object.keys({}) it will show an empty array Object.keys({}).length will come back as 0 which is falsie.  -->
+  <!-- Object.keys({name: 'wes'}) will show name property, Object.keys({name: 'wes'}).length will come back as 1 because of the 1 name property. Making this truthie.  -->
+
+  <h2>Truthy Values</h2>
+  <!-- These equate to true -->
+  * 1
+  * -10
+  * array with numbers
+  * full string
+  * a string of "0"
+  <!-- All strings besides a string of nothing is truthy -->
+
+  <h2>Falsy Values</h2>
+  <!-- These equate to false -->
+  * 0 
+  * undefined variable
+  * Variable set to null
+  * a variable set to `"hello" - 10` NaN <!-- NaN not a number -->
+  * empty string
+```js
+
+let score []; // empty array will first come up as truthie then when matched with .length, because of the 0 it will come up as falsie. 
+
+if (score.length) {
+  console.log('There is a score already');
+} else {
+  console.log('No Score Yet!')
+}
+```
 ## Bang !== Does not equal to
 
 const name = 'felicia'

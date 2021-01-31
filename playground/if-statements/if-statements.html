@@ -9,6 +9,26 @@
 </head>
 
 <body>
+  * empty array 
+  * empty object
+
+  <h2>Truthy Values</h2>
+  <!-- These equate to true -->
+  * 1
+  * -10
+  * array with numbers
+  * full string
+  * a string of "0"
+  <!-- All strings besides a string of nothing is truthy -->
+
+  <h2>Falsy Values</h2>
+  <!-- These equate to false -->
+  * 0 
+  * undefined variable
+  * Variable set to null
+  * a variable set to `"hello" - 10` NaN <!-- NaN not a number -->
+  * empty string
+
   <script>
     // If there is multiple statements that could be true be carefule of the order you put in. 
     const age = 50;
@@ -49,9 +69,54 @@
     return 'awesome'.includes(name);
   }
 
-  // if (nameIsAwesome('wes')) {
-  //   console.log('COOL NAME WES!!');
-  // }
+  if (nameIsAwesome('wes')) {
+    console.log('COOL NAME WES!!');
+  }
+
+  const dog = 'snickers';
+  // const dog = ''; An empty string is not true or false
+  // if statements will take in a number of different values and it will try to coerce-change them into a boolean.
+
+  if (dog) {
+    console.log('you have a dog');
+  } else {
+    console.log('you dont have a dog');
+  }
+
+  let score = '';
+
+  if (score) {
+    console.log('There is a score already');
+  } else {
+    console.log('No score yet!')
+  }
+
+  // * empty array 
+  // * empty object
+  // * 1
+  // * -10
+  // * array with numbers
+  // * full string
+  // * a string of "0"
+
+ 
+  // * 0 
+  // * undefined variable
+  // * Variable set to null
+  // * a variable set to `"hello" - 10` NaN <!-- NaN not a number -->
+  // * empty string
+
+  const values = [[], {}, -10, 1, 0, '', 'full string', ' ', undefined, NaN, null];
+
+  console.group('truthy or falsy values');
+  values.forEach(value => {
+    if(value) {
+      console.log(value, 'is truthy');
+    } else {
+      console.log(value, 'is falsy');
+    }
+  });
+  console.groupEnd();
 
   </script>
 </body>
