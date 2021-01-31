@@ -91,21 +91,6 @@
     console.log('No score yet!')
   }
 
-  // * empty array 
-  // * empty object
-  // * 1
-  // * -10
-  // * array with numbers
-  // * full string
-  // * a string of "0"
-
- 
-  // * 0 
-  // * undefined variable
-  // * Variable set to null
-  // * a variable set to `"hello" - 10` NaN <!-- NaN not a number -->
-  // * empty string
-
   const values = [[], {}, -10, 1, 0, '', 'full string', ' ', undefined, NaN, null];
 
   console.group('truthy or falsy values');
@@ -119,6 +104,12 @@
   console.groupEnd();
 
   console.clear();
+
+  const isCool = true;
+
+  if (isCool) {
+    console.log('You are not cool');
+  }
 
   </script>
 </body>

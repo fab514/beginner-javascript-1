@@ -122,3 +122,13 @@ name === 'felicia' is true
 name === 'keith' is false
 name !== 'keith' is true. (name is not keith)
 
+## Coercion will change something of a different- such as a string or a number- and turn it into a real boolean.
+- Using !bang with coercion. The bang turned the string into a booleon.
+name 
+'wes'
+!name 
+false
+!!name
+true
+- A single bang will coerce the string into a boolean but make it opposite (not something). 
+- A double bang !! will coerce the sting into a boolean however it will stay original. 
