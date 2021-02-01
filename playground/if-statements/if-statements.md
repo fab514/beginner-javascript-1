@@ -132,3 +132,8 @@ false
 true
 - A single bang will coerce the string into a boolean but make it opposite (not something). 
 - A double bang !! will coerce the sting into a boolean however it will stay original. 
+
+## Ternary short hand if statement. 
+- * needs a condition, 
+  * what it needs if it's true 
+  * what it needs if it is false. 

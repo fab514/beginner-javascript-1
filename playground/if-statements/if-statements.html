@@ -107,9 +107,60 @@
 
   const isCool = true;
 
-  if (isCool) {
+  if (!isCool) {
     console.log('You are not cool');
   }
+
+  // ternary
+  const count = 2;
+  // let word; 
+  // if (count === 1) {
+  //   word = 'item';
+  // } else {
+  //   word = 'items';
+  // }
+
+  // ternary- shorthand if or else statements must have both ? 'if' : 'else'; in shorthand
+// 1. Condition
+// 2. what to do if true
+// 3. what to do if false
+
+  const word = count === 1 ? 'item' : 'items';
+
+  const sentence = `You have ${count} item${count === 1 ? '' : 's'} in your cart`;
+  console.log(sentence);
+  
+  function showAdminBar() {
+    console.log('Showing admin bar');
+  }
+  const isAdmin = true;
+  // isAdmin ? showAdminBar() : null;
+
+  // And And Trick! 
+  function check1() {
+    console.log('Running Check 1');
+    return true;
+  }
+  function check2() {
+    console.log('Running Check 2');
+    return false;
+  }
+  function check3() {
+    console.log('Running Check 3');
+    return true;
+  }
+
+  // Short Circuiting- Remember if any are false js will stop checking the rest of the list. 
+  if(check1() && check2() && check3()) {
+    console.log('all checks passed');
+  } else {
+    console.log('Some checks failed');
+  }
+// using or abusing short circuiting some coders use this to cancel an and statement if they know that the first value is false. If the first is false, the rest will not run. 
+  // isAdmin ? showAdminBar() : null;
+  isAdmin && showAdminBar();
+// You can put curly brackets within a one line if statement. Good practice but you can also break into multiple lines. 
+  if(isAdmin) { showAdminBar(); }
 
   </script>
 </body>
