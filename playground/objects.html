@@ -9,8 +9,60 @@
 </head>
 
 <body>
+  <input type="text" name="first" value="wes">
   <script>
+    // Can't trust the order of the properties! list will not always be shown in the way you list them in JS. This may show as name, age in different browsers. 
+    // curly brackets show that it is an object. 
+    // Properties of your object should mostly use the same parameters as creating a variable.
+    // Property can use a - 'cool-dude'
+    const age = 100;
+    const wes = { 
+      property: 'value-any type',
+      age, // same as age: age,
+      name: 'wes',
+      'cool-dude': true,
+      'really-cool': false,
+      '777': true,
+      dog: 'snicker',
+      clothing: { // sub-property
+        shirts: 10, // nested sub-object
+        pants: 2,
+      },
+      // a method, this uses the property that is on the left. 
+      sayHello: function (greeting = 'hey') {
+        return `${greeting} ${this.name};
+      },
+      // Add comma at the end, even if you don't have a property afterwards.
+    };
 
+    wes.job = 'Web Developer';
+    wes.age = 50; // properties on a const object can change, not the object.
+    
+    
+    // const wesFroze = Object.freeze(wes); // Use this to not allow the properties to change. 
+    
+    
+    // Two ways to call a property
+    // 1. use .property
+    console.log(wes.age);
+    // wes.clothing.pants; Nested properties
+    // 2. use square brackets good for using string in variable as property look up. When a property is stored in a variable. 
+    // wes.jobs ? wes.jobs.side : `Jobs  doesn't exist` Use question mark to check if a property exists.
+    // const propertyToCheck = prompt('What do you want to check?');
+    // console.log(propertyToCheck);
+    // console.log(person[propertyToCheck]);
+
+    const nameInput = document.querySelector('name="first"]');
+
+    const name = nameInput ? nameInput.value : '';
+    console.log(name);
+
+    console.log(delete wes.job);
+    wes.age = undefined;
+    wes.age = null;
+
+
+    // methods
   </script>
 </body>
 
