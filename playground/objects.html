@@ -10,6 +10,8 @@
 
 <body>
   <input type="text" name="first" value="wes">
+  <!-- The below link gives you a JS package that deep cloning of an object is possible. reminder without this only shallow copying can be used.  -->
+  <script src="https://inpkg.com/lodash"></script> 
   <script>
     // Can't trust the order of the properties! list will not always be shown in the way you list them in JS. This may show as name, age in different browsers. 
     // curly brackets show that it is an object. 
@@ -56,12 +58,85 @@
     const name = nameInput ? nameInput.value : '';
     console.log(name);
 
-    console.log(delete wes.job);
-    wes.age = undefined;
-    wes.age = null;
+    // console.log(delete wes.job);
+    // wes.age = undefined;
+    // wes.age = null;
 
 
     // methods
+
+    let name1 = 'wes';
+    let name2 = 'wes';
+    // reminder that triple equals check the number and the type. 
+    console.log(name1 === name2); // will be true
+    name1 = 'scott';
+    console.log(name1 === name2); // will be false
+    // update name1 to be same as name2
+    name1 = name2;
+    console.log(name1 === name2); // will become true. 
+    name2 = name1;
+    name2 = 'westopher'; // will be false for it has not been matched to name1 yet. 
+
+    // unlike the strings, the two objects are not the same even though the contents inside might be the same. 
+
+    const person1 = {
+      first = 'wes',
+      last = 'bos',
+      clothing: {
+        shirts: 10, 
+        pants: 2,
+      }
+    };
+    const person2 = {
+      first = 'wes',
+      last = 'bos',
+    };
+
+    // when objects or arrays are copied by reference. Person3 was never it's own object, it just points to and changes the original object. 
+    // const person3 = person1;
+    // person3.first = 'Larry';
+    // console.log(person3.first);
+    // console.log(person1.first);
+    // ways to copy an object 
+    // spread: take a copy of a object. This will copy object person1
+    // const person3 = {...person1}; 
+    const person3 = _.cloneDeep(person1); // will allow you just to copy the nested elements in an object. 
+    person3.first = 'Larry'; // person1 will not change because we made a copy and not a reference.
+
+    person3.clothing.shirts = 100; // making a copy only works for one level-shallow clone.. In this case the shirt number will change in both person3 and person1. 
+    
+    const meatInventory = {
+      bacon: 2, 
+      sausage: 3, 
+      oyster: 10, 
+    };
+
+    const veggieInventory = {
+      lettuce: 5, 
+      tomatoes: 3, 
+      oyster: 15, // The 15 will overwrite 10- order does matter in JS 
+    };
+    // Object will combine the 2 objects to make one inventory. 
+    const inventory = { 
+      ...meatInventory, 
+      ...veggieInventory,
+  };
+
+  function doStuff(data) {
+    data = 'something else';
+    console.log(data);
+  }
+
+  function doStuff2(data) {
+    data.tomatoes = 1000000000;
+    console.log(data);
+  }
+
+  doStuff2(inventory);
+  // If you modify information nested in a function it will also update the data outside the function too. 
+  // Since the tomatoes were updated in the function it will also be updated in veggieInventory.
+  // Not the case for booleans, numbers and strings. But it is the case for objects and arrays. 
+  //If you would like to avoid changing outside objects start by copying the original object. 
   </script>
 </body>
 
