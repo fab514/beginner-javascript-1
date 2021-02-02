@@ -28,10 +28,9 @@
         shirts: 10, // nested sub-object
         pants: 2,
       },
-      // a method, this uses the property that is on the left. 
-      sayHello: function (greeting = 'hey') {
-        return `${greeting} ${this.name};
-      },
+      sayHello: function (greeting = 'Hey') {
+        return `${greeting} ${this.name}`;
+      }
       // Add comma at the end, even if you don't have a property afterwards.
     };
 
