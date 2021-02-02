@@ -10,6 +10,60 @@
 
 <body>
 
+  <script>
+// Timer and interval is a typeOf number.
+
+    // setTimeout(callback, numberOfMilliseconds);
+    // Putting a anonymous function inside the timers
+    // setTimeout(function() {
+    //   console.log('Done');
+    // }, 500);
+    // Referencing the function inside of a timers
+      function buzzer() {
+        console.log('ENNGGGGG');
+      }
+      // JS will keep on running even though the timer might be still running.
+      // setTimeout(buzzer, 500);
+
+    // Intervals runs intervals in the designated number of milliseconds. 
+      setInterval(buzzer, 2000);
+
+      // Intervals will not run immediately so you can add an immediate function then inervals from there. 
+      function setImmediateInterval(funcToRun, ms) {
+        //  right away call that fuction
+        funcToRun();
+        // run regular interval
+        return setInterval(buzzer, 2000);
+      }
+
+      setImmediateInterval(buzzer, 2000);
+      function sayHi() {
+        console.log('Hey!!!');
+      }
+      // You can pass a function as an argument within a parent function.
+      function destroy() {
+        document.body.innerHTML = `<p>Destroyed</p>`;
+      }
+        // Save reference of your timer in a variable if you need to stop the timer. 
+      const bombTimer = setTimeout(destroy, 5000);
+
+      console.log(bombTimer);
+
+      window.addEventListener('click', function () {
+        console.log('You Clicked! You saved the World!');
+        // ??? How do I stop
+        clearTimeout(bombTimer); // Stop the timer from running. 
+      });
+
+      const poopInterval = setInterval(function () {
+        console.log('poop');
+        console.log('hehehe');
+      }, 100);
+
+      setTimeout(function () {
+        clearInterval(poopInterval);
+      }, 3000);
+  </script>
 </body>
 
 </html>
