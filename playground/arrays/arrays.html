@@ -13,7 +13,7 @@
 <body>
   <script>
 
-    const names = ['wes', 'kait', 'snickers', 'last one!']; // array literal
+    const names = ['wes', 'kait', 'snickers']; // array literal
     console.log(names[0]); // items are 0 based
     console(name.length);
     console.log(names[names.length - 1]); // Gives access to the last item of the array. 
@@ -23,12 +23,59 @@
     const names2 = [...names, 'lux']; // Stop the mutible method from changing the array.
     names.unshift('poppy'); // Item moves to front of the array. 
     const name3 = ['poppy', ...names]; 
-    // We need to make a copy of the array. Does not change original
-    
-    
-    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    // Copy of the array. 
 
-    numbers.splice(3, 2); // Starts at 3rd item. Returns as [1, 2, 3, 6, 7, 8, 9];
+
+    // Putting a new item in the middle of the original list. Between miele and panasonic
+    const bikes = ['bianchi', 'miele', 'panasonic', 'miyata']; 
+    const newBikes = [
+      ...bikes.slice(0, 2),
+      'benotto',
+      ...bikes.slice(2)
+    ];
+    // Removes an item in the middle of the array. 
+    const newBikes2 = [
+      ...newBikes.slice(0, 3),
+      ...newBikes.slice(4), //remove panasonic
+    ];
+    console.log(newBikes2);
+
+    const comments = [
+      { text: 'Cool Beans', id: 123 },
+      { text: 'Love This', id: 133 },
+      { text: 'Neato', id: 233 },
+      { text: 'Good Bikes', id: 333 },
+      { text: 'So Good', id: 433 },
+    ];
+
+    // Deletes any comment when you add it's id. 
+    // in console- deleteComment(233, comments). It will return the new array but not change the original. 
+
+    function deleteComment(id, comments) {
+      // first find the index of the item in the array
+      const commentIndex = comments.findIndex(comment => comment.id === id);
+      // make a new array without that item in it
+      return [
+        ...comments.slice(0, commentIndex),
+        ...comments.slice(commentIndex + 1),
+      ];
+      // return our new array
+    }
+    // To change the original array switch the comments object from const to let. 
+    
+    // Having trouble with if/else shorthand. 
+    const kaitIndex = names.findIndex(name => name === 'kait');
+    const newNamesWithoutKait = [
+      // get everything up to kait index
+      ...names.slice(0, kaitIndex),
+      // everything after kait index
+      ...names.slice(kaitIndex + 1)
+    ];
+    console.log(newNamesWithoutKait);
+    
+    // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+    // numbers.splice(3, 2); // Starts at 3rd item. Returns as [1, 2, 3, 6, 7, 8, 9];
 
     // const numbersReversed = [...numbers].reverse();
     

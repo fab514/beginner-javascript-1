@@ -45,3 +45,36 @@
     - Better to use slice instead of splice.
     ```js
     const pizzaSlice = numbers.slice(2, 4); // Takes out the chunk of the array without changing the original data.
+
+        const comments = [
+      { text: 'Cool Beans', id: 123 },
+      { text: 'Love This', id: 133 },
+      { text: 'Neato', id: 233 },
+      { text: 'Good Bikes', id: 333 },
+      { text: 'So Good', id: 433 },
+    ];
+
+    // Deletes any comment when you add it's id. 
+    // in console- deleteComment(233, comments). It will return the new array but not change the original. 
+
+    function deleteComment(id, comments) {
+      // first find the index of the item in the array
+      const commentIndex = comments.findIndex(comment => comment.id === id);
+      // make a new array without that item in it
+      return [
+        ...comments.slice(0, commentIndex),
+        ...comments.slice(commentIndex + 1),
+      ];
+      // return our new array
+    }
+    // To change the original array switch the comments object from const to let. 
+    
+    // Having trouble with if/else shorthand. 
+    const kaitIndex = names.findIndex(name => name === 'kait');
+    const newNamesWithoutKait = [
+      // get everything up to kait index
+      ...names.slice(0, kaitIndex),
+      // everything after kait index
+      ...names.slice(kaitIndex + 1)
+    ];
+    console.log(newNamesWithoutKait);
