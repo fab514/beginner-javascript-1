@@ -10,6 +10,48 @@
 
 <body>
   <script>
+    const person1 = { 
+      name: 'wes',
+      age: 200,
+    };
+
+    // Maps vs Objects
+    const myMap = new Map();
+    // set()
+    // maps contain entries
+    myMap.set('name', 'wes');
+    // keys can be any type when values can only have set types. 
+    myMap.set(100, 'This is a number');
+    // key is an object, and the value is "Really Cool" benefit to reference person1 to store additional information
+    myMap.set(person1, 'Really Cool');
+    console.log(myMap);
+    
+    const score = 100; 
+    const prizes = new Map();
+    prizes.set(100, 'Bear');
+    prizes.set(200, 'Duck');
+    prizes.set(300, 'Car');
+    console.log(`you win a ${prizes.get(score)}`);
+    // myMap.sizr in console will show how many values in the map
+    // Unlivalues in the make objects which list at random, Maps list on console in the order you list them in VS
+    // You can put multipe arrays in a map. newMap({['name', 'wes'], ['age', 49]]}).
+    // Select that ul
+    // Will show the map of prizes in the DOM with insert HTML in the given order. 
+    const ul = document.querySelector('.prizes');
+  for(const [points, prize] of prizes) {
+      const li = `<li>${points} - ${prize}</li>`;
+      ul.insertAdjacentHTML('beforeend', li);
+    }
+    // When to use map or object. -Use map when needing to maintain order of items. 
+    // You need to use an object to nest functions, you can not use a map. Maps are only used to sstroe data. 
+
+    // JSON only can convert objects to send to other developers. 
+    // in console put in JSON.stringify(person) converts to ('{"name":"wes","age":100}')'
+    // Once developer gets the JSON string they can turn it back into an object with JSON.parse('{"name":"wes","age":100}')'
+    // Since maps cannot be sent you must change a map into an object using object.fromEntries(myMap) however, it sometimes does not convert well.
+    // has()
+    // delete()
+    //  in cosole myMap.delete('name')
 
   </script>
 </body>
