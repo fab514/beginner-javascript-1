@@ -45,8 +45,28 @@
     */
 
     // Array.of();
-
+    // Creates a new Array instance with a variable number of arguments, regardless of number or type of the arguments.
+    // Array.of('wes','kait') uses Array.of and paranthasis instead of square brackets. 
     // Make a function that creates a range from x to y with Array.from();
+    // You can spread the letters of each item both ways [...'wes'] or Array.of(...'wes') will return as ["w", "e", "s"]
+    
+    // Array.from- returns the length you put in as empty 'undefined' spots
+    // Array.from({ length: 10 }) will show 10 empty array spots 0-9.
+    // Array takes a second map argument. Map function will tell us what to return. 
+
+    // const range = Array.from({ length: 10}, function(_item) {
+    //   return 'wes';
+    // }); 
+
+    // A way for the user to put in their own values for the range.
+    function createRange(start, end) {
+      const range = Array.from({ length: end - start + 1 }, function(item, index) {
+       return index + start;
+      }); 
+      return range;
+    }
+      
+    // Returns as a length of 10 "wes" 0-9
 
     // Check if the last array you created is really an array with Array.isArray();
 
