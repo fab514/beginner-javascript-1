@@ -57,40 +57,89 @@
     // const range = Array.from({ length: 10}, function(_item) {
     //   return 'wes';
     // }); 
-
-    // A way for the user to put in their own values for the range.
+    // Returns as a length of 10 "wes" 0-9
+    // A way for the user to put in their own values for the range. Will return as [3, 4, 5, 6, 7]
     function createRange(start, end) {
       const range = Array.from({ length: end - start + 1 }, function(item, index) {
        return index + start;
       }); 
       return range;
     }
+    // You can use a range of any number but it may break if your number is too long. 
       
-    // Returns as a length of 10 "wes" 0-9
+    const myRange = createRange(3, 7);
+    
 
     // Check if the last array you created is really an array with Array.isArray();
+      console.log(Array.isArray(myRange)); // should return as true.
+      // if you put in typeof myRange this will return as an object. 
 
     // Take the meats object and make three arrays with Object.entries(), Object.keys, Object.values()
+    console.log(Object.entries(meats)); // The entries nested in the arrays shows the key and the value
+    console.log(Object.keys(meats)); // Shows only the values in the array. In this example beynd, beef, pork
+    console.log(Object.values(meats)); // Shows only the values in an array. In this example 10, 5 , 7.
+
+    Object.values(meats).forEach(qty => {
+      console.log(qty);
+    })
+    // forEach will break up the entries in each array. This breaks up the values. 
+    Object.keys(meats).forEach(qty => {
+      console.log(qty);
+
+    Object.entries(meats).forEach(([key, value]) => { // third and shortest way. You can name the entries with different names based on the array. Like meat, qty
+      // const key = entry[0]; // first way
+      // const value = entry[1];
+      // const [key, value] = entry; // second way
+
+      console.log(key, value);
+    });
 
     /*
-      Instance Methods
+      Instance Methods-methods that live on each array. 
     */
 
     // Display all bun types with " or " - use join()
+    console.log(buns.join('or')); // the bun will return as egg or wonder or brioche
 
     // We have a string "hot dogs,hamburgers,sausages,corn" - use split() to turn it into a string
-
-    // take the last item off toppings with pop()
+    const foodString = "hot dogs,hamburgers,sausage,corn";
+    console.log(foodString.split(',')); // Will split the string using commas. Without the comma split will break it up by letter. 
+    
+    // take the last item off toppings with pop() -a mutible array
+    // in the console topping.pop() will take off the last item in the array and take it off. Making the array one item shorter. 
+    const lastItem = toppings.pop(); 
+    console.log(lastItem)
     // add it back with push()
+    const t2 = toppings.push(lastItem);
+    console.log(toppings);
+
     // take the first item off toppings with shift()
+    const firstItem = toppings.shift();
+    console.log(firstItem);
+
     // add it back in with unshift()
+    toppings.unshift(firstItem);
     // Do the last four,but immutable (with spreads and new variables)
+    let newToppings = toppings.slice(0, toppings.length - 1);
 
-
+    newToppings = [...newToppings, toppings[toppings.length - 1]]; // reminder that ...spreads out an array
+    console.log(newToppings);
     // Make a copy of the toppings array with slice()
+    const toppingCopy = toppings.slice(0);
+    toppings[0] = 'Mushy Boi';
+    console.log(toppings); // will show the original array that has been changed.
+    console.log(toppingCopy); // will show the copy that does not have the new entry. 
     // Make a copy of the toppings array with a spread
+    const toppingsCopy2 = [...toppings];
     // take out items 3 to 5 of your new toppings array with splice()
+    toppingsCopy.splice(3, 5);
+    console.log(toppingsCopy);
     // find the index of Avocado with indexOf() / lastIndexOf()
+    const avoIndex = toppings.indexOf('Avocado');
+    console.log(avoIndex);
+    const wes = { name: 'wes' }
+    const people = [{ name: 'scott' }, wes];
+    console.log(people.indexOf());
     // Check if hot sauce is in the toppings with includes()
     // add it if it's not
     // flip those toppings around with reverse()
