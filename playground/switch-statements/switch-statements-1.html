@@ -11,8 +11,9 @@
     <style>
         .turt {
             position: relative;
-            --x: 0px;
-            --y: 0px;
+            --y: 0;
+            --x: 0;
+            
         
             transform: translateX(var(--x)) translateY(var(--y));
         }
@@ -24,6 +25,7 @@
         const turtle = document.querySelector('.turt');
         let x = 0;
         let y = 0;
+        const speed = 5;
         function handleKeyDown(event) {
         // only arrow
             if (!event.key.includes('Arrow')) { return; }
@@ -47,7 +49,7 @@
         // turtle.style.background = 'red';
         // same
         // turtle.style['background'] = 'red';
-        turtle.setAttribute('style', `--x: ${x * speed}; --y: ${y * speed}`);
+        turtle.setAttribute('style', `--x: ${x * speed}px; --y: ${y * speed}px;`);
         }
         
         window.addEventListener('keydown', handleKeyDown);
