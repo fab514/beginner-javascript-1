@@ -64,7 +64,7 @@
        return index + start;
       }); 
       return range;
-    }
+    };
     // You can use a range of any number but it may break if your number is too long. 
       
     const myRange = createRange(3, 7);
@@ -83,8 +83,12 @@
       console.log(qty);
     })
     // forEach will break up the entries in each array. This breaks up the values. 
-    Object.keys(meats).forEach(qty => {
-      console.log(qty);
+    Object.entries(meats).forEach(([meat, qty]) => {
+      // const key = entry[0];
+      // const value = entry[1];
+      // const [key, value] = entry;
+      console.log(meat, qty);
+    });
 
     Object.entries(meats).forEach(([key, value]) => { // third and shortest way. You can name the entries with different names based on the array. Like meat, qty
       // const key = entry[0]; // first way
@@ -128,21 +132,35 @@
     const toppingCopy = toppings.slice(0);
     toppings[0] = 'Mushy Boi';
     console.log(toppings); // will show the original array that has been changed.
-    console.log(toppingCopy); // will show the copy that does not have the new entry. 
+    console.log(toppingCopy); // will show the copy that does not includenthe new entry 'MushyBoi'. 
     // Make a copy of the toppings array with a spread
-    const toppingsCopy2 = [...toppings];
+    const toppingsCopy = [...toppings]; 
     // take out items 3 to 5 of your new toppings array with splice()
-    toppingsCopy.splice(3, 5);
-    console.log(toppingsCopy);
-    // find the index of Avocado with indexOf() / lastIndexOf()
+    toppingsCopy.splice(3, 5); // Starting from 3 splice removes 5 items. 
+    console.log('toppingsCopy',toppingsCopy);
+    // find the index of Avocado with indexOf() / lastIndexOf() // will fine first index of last index will find last relatedindex
+
     const avoIndex = toppings.indexOf('Avocado');
     console.log(avoIndex);
     const wes = { name: 'wes' }
-    const people = [{ name: 'scott' }, wes];
+    const people = [{ name: 'scott' }, wes]; // If you put in indexOf() in the console with wes(object) it will show the location in teh array 1, If you use it for "scott" (a string)it will come up as -1 or not found.  
     console.log(people.indexOf());
+    
     // Check if hot sauce is in the toppings with includes()
+    // In the console putting an array with .includes attached will show you if an element is included in that array. [1,2,3,4].includes(5) will be false, [1,2,3,4].includes(4) will be true. 
+    const isInToppings = toppings.includes('Hot Sauce');
+    console.log(isInToppings); // False
     // add it if it's not
-    // flip those toppings around with reverse()
+    if (!isInToppings) {
+      toppings.push('Hot Sauce');
+    }
+    console.log(toppings);
+
+    // flip those toppings around with reverse() 
+    toppings.reverse(); // mutatible method
+    console.log(toppings);
+    const toppingReversed = [...toppings].reverse(); // making the mutible method immutible. 
+    console.log(toppingReversed);
 
     /*
       Callback Methods
