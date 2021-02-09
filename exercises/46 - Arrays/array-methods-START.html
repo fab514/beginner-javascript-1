@@ -166,16 +166,115 @@
       Callback Methods
     */
 
-    // find the first rating that talks about a burger with find()
+    // find the first rating that talks about a burger with find() // Will show you if the find was successful by using a boolean
+    
+    // DIFFERENT METHODS TO FINING THE RATING> 
+    // function findBurgRating(singleFeedback) { // the first true is found the js will stop running this function. 
+
+    //   return singleFeedback.comment.includes('burg'); // Includes will only ever return true or false. This is a condition that will be showing a true or false. 
+    // }
+    // Using an arrow function
+    // const findBurgRating = (singleFeedback) => {
+    //   return singleFeedback.comment.includes('burg');
+    // }
+    // Making a one line implicent return
+    // function findBurgRating = (singleFeedback) => singleFeedback.comment.includes('burg');
+
+      // Another option is to group the burger finding commands into an object. 
+      // Puttomg function inside of an object which is a method. Good thing about this is you can search for util.find
+      // const util = {
+      //   findBurgRating: function (singleFeedback) {
+      //     return singleFeedback.comment.includes(word);
+      //   }
+      // }
+
+      // const findBurgRating = (singleFeedback) => singleFeedback.comment.includes('burg');
+      // const findSmoothieRating = (singleFeedback) => singleFeedback.comment.includes('smoothie');
+      
+      // Not afficient to use this code to find every word. Best to allow the word to be interchangable.
+        // This function will work when find or filter are being used. 
+      function findByWord(word) {
+        return function (singleFeedback) {
+          return singleFeedback.comment.includes(word);
+        }
+      }
+
+      const burgRating = feedback.find(findByWord('burg'));
+      const smoothieRating = feedback.find(findByWord('smoothie'));
+
+      console.log(burgRating);
+      // With the code above the user can put any word in the console and will generate a new function to find that word. 
+
+      
+    
+
+    // const burgRating = feedback.find(rating => rating.comment.includes('burg'));
+    
+    
     // find all ratings that are above 2 with filter()
+      function filterByMinRating(minRating) { // Using a function within a function. 
+        return function(singleFeedback) {
+          return singleFeedback.rating > minRating
+        }
+      }
+      
+      const goodReviews = feedback.filter(filterByMinRating(2)); // You can change the parameters being used in the function above. 
+      console.table(goodReviews);
+    
+      // Make into a implicent return single lined. if is a condition which evaluates something from true or false
+    // Shorthand of the if else statement below.
+    // const goodReviews = feedback.filter(singleFeedback => singleFeedback.rating > 2);
+    // const goodReviews = feedback.filter(singleFeedback => {
+    //   if (singleFeedback.rating > 2) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // });
+
+    
     // find all ratings that talk about a burger with filter()
+    const burgRatings = feedback.filter(findByWord('burg')); // Used findByWord function from line 196
+      console.table(burgRatings);
+
     // Remove the one star rating however you like!
+    const legitRatings = feedback.filter(single => single.rating !== 1);
+    console.table(legitRatings);
 
     // check if there is at least 5 of one type of meat with some()
+    // .some checks if at least one element passes the test. 
+      const isThereEnoughOfOneMeat = Object.values(meats).some(meatValue => meatValue >= 5);
+      console.log(isThereEnoughOfOneMeat);
+
+
     // make sure we have at least 3 of every meat with every()
+    const isThereEnoughOfEveryMeat = Object.values(meats).every(meatValue => meatValue >= 5);
+      console.log(isThereEnoughOfEveryMeat);
+
+    // .every means everything in the array meets the criteria
+
     // sort the toppings alphabetically with sort()
+    // Example of sorting numbers. // When using sort the numbers will be tuned into a string and sorted that way. 1, 100 etc. To sort by number you need a callback function
+    const numbers = [1, 2, 100, 3, 200, 400, 155]
+    const numbersSorted = numbers.sort((firstItem, secondItem) => firstItem - secondItem);
+    console.log(numbersSorted);
+
+    console.log(toppings.sort()); // Sorts our topping list. 
+
     // sort the order totals from most expensive to least with .sort()
+      function numberSort(a,b) {
+        return a-b;
+      }
+      console.log(orderTotals.sort(numberSort));
+
     // Sort the prices with sort()
+    const productsSortedByPrice = Object.entries(prices).sort(function(a,b) {
+      const aPrice = a[1]; // The one is the position you are targeting in the array. Instead of organizing by 0 which is the food, it will sort by item 1 which is the price. 
+      const bPrice = b[1];
+      return bPrice - aPrice; // This will show descending, if you would like the other way around use aPrice - bPrice. 
+    });
+    console.table(Object.fromEntriesproductsSortedByPrice); // Object.fromEntries will make it become to an object. 
+    // Order in the Js will layout based on how you type it in until you use numbers. which will go numerical order. 
 
     /*
       Looping Methods (next)
