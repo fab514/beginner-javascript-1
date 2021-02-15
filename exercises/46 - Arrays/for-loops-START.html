@@ -14,9 +14,28 @@
 
     const name = 'Wes Bos';
 
-    // For
+    // For // requires an initial expression, a condition and an increment expression. Good for a block of code a certain number of times.
+      // for(let i = 100; 1 <= 120; i += 2) { // list from 0-10, i++ is the icrement originally set to 0 then increases by 1
+      //   console.log(i); // absoluely no semi colon. 
+      // }
+      // // you can change the i variable since you set it to let insead of const. 
 
-    // For of
+      // // old way to use for. 
+      // for (let i = 0; i < numbers.length; i++) {
+      //   console.log(numbers[i]);
+      // }
+      // best for when you want to move up more then one at a time. 
+
+
+    // For of // used for looping over iterable. // imilar to split where you split up word characters. for of unlike split accept emojis when split does not. 
+    // if you need to sequence a bunch of data when looping you use for of
+    for(const letter of name) {
+      console.log(name);
+    }
+
+    for (const number of numbers) { // DOes not allow us to filter
+      console.log(number)
+    }
 
     // For in
 
