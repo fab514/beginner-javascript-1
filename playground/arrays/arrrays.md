@@ -78,3 +78,16 @@
       ...names.slice(kaitIndex + 1)
     ];
     console.log(newNamesWithoutKait);
+
+    ```
+    ## Array.from() 
+    - A static method to create a shallow-copied array from an array like or iterable object. 
+    ### Array.from() lets you create Arrays from:
+    - array-like objects (objects with a length property and indexed elements); or
+    - iterable objects (objects such as Map and Set).
+
+- Array.from() has an optional parameter mapFn, which allows you to execute a map() function on each element of the array being created.
+
+- More clearly, Array.from(obj, mapFn, thisArg)
+has the same result as Array.from(obj).map(mapFn, thisArg),
+except that it does not create an intermediate array.
