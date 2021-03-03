@@ -20,6 +20,22 @@ function Gallery(gallery) {
         modal.classList.add('open'); // if there is not already a css class match running: this will add a class of 'open'
     }
 
+    function closeModal() {
+        console.info('Closing Modal...');
+        modal.classList.remove('open');
+        // TODO: add event listeners for clicks and keyboard..
+    }
+
+    function handleClickOutside(e) {
+        if(e.target === e.currentTarget) {
+            closeModal();
+        }
+    }
+
+    function handleKeyUp(e) {
+        if (e.key === 'Escape') closeModal();
+    }
+
     function showImage(el) { // el image element
         if(!el) {
             console.info('no image to show');
@@ -34,11 +50,14 @@ function Gallery(gallery) {
         currentImage = el;
         openModal();
     }
-
+    // These are our event listeners!
     // for events you need to match the name event = event or e = e
     images.forEach(image => image.addEventListener('click', e => showImage
     (e.currentTarget))
     );
+
+    modal.addEventListener('click', handleClickOutside);
+    window.addEventListener('keyup', handleKeyUp);
 }
 // Allow to use the same functions by using closure. You can still access a function after it has been run. 
 
