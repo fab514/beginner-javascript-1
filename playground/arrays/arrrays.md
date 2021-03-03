@@ -82,6 +82,8 @@
     ```
     ## Array.from() 
     - A static method to create a shallow-copied array from an array like or iterable object. 
+    - creates a node list and turns it into an array. 
+    
     ### Array.from() lets you create Arrays from:
     - array-like objects (objects with a length property and indexed elements); or
     - iterable objects (objects such as Map and Set).
