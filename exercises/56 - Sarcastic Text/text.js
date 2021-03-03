@@ -3,6 +3,7 @@
 const textarea = document.querySelector('[name="text"]');
 const result = document.querySelector('.result');
 const filterInputs = Array.from(document.querySelectorAll('[name="filter"]'));
+// Array.from created an array of (name="filter") within the html. This attached all three of the text sarcastic, funky and unable to the variable filterInputs.
 
 /* eslint-disable */
 // This is a lookup for the funky letters. eslint will avoid each letter to have it's own line. 
