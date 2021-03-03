@@ -12,6 +12,8 @@ function handleSubmit(e) {
     e.preventDefault(); // will stop sll default settings including the item being added to the url when submitted. 
     console.log('submitted!!');
     const name = e.currentTarget.item.value; // the original current target will be reaching the form. In order to reach the input in the form use currentTarget.item (item is the id in meta data)
+    // if it is empty do not submit 
+    if (!name) return;
     const item = {
         name: name,
         id: Date.now(),
