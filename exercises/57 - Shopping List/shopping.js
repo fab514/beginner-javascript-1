@@ -60,9 +60,19 @@ function restoreFromLocalStorage() {
         list.dispatchEvent(new CustomEvent('itemsUpdated'));
     }
 }
+
+function deleteItem(id) {
+    console.log('deleting item');
+}
+
 // whenever you want an event to listen for a submit you do not need to use event click etc. 
 shoppingForm.addEventListener('submit', handleSubmit);
 list.addEventListener('itemsUpdated', displayItems);
 list.addEventListener('itemsUpdated', mirrorToLocalStorage);
-
+// Event Delegation: we listen for the click on the list <ul> but then delegate the click over to the button if that is what was clicked.
+list.addEventListener('click', function(e) { // Will allow us to add new items to the list and still use the deleting functions.
+    if(e.target.matches('button')) {
+        deleteItem();
+    }
+})
 restoreFromLocalStorage();
