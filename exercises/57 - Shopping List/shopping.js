@@ -50,7 +50,7 @@ function mirrorToLocalStorage() {
 
 function restoreFromLocalStorage() {
     console.info('Restoring from LS');
-    const lsItems = JSON.parse(localStngorage.getItem('items')); // JSON.parse will turn items converted into a string back into an array. 
+    const lsItems = JSON.parse(localStorage.getItem('items')); // JSON.parse will turn items converted into a string back into an array. 
     if(lsItems.length) {
         // The following are different wasys to bring the items into a string. ...lsItems are spreading the items.
         // items = lsItems;
@@ -64,3 +64,5 @@ function restoreFromLocalStorage() {
 shoppingForm.addEventListener('submit', handleSubmit);
 list.addEventListener('itemsUpdated', displayItems);
 list.addEventListener('itemsUpdated', mirrorToLocalStorage);
+
+restoreFromLocalStorage();
