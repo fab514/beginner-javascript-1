@@ -6,7 +6,7 @@ const list = document.querySelector('.list');
 // We need an array to hold our state
 // state is a bunch of data that reflects the state of your application. In this it will showing a list of all the items and show the current state of each item. 
 
-const items = [];
+let items = [];
 
 function handleSubmit(e) {
     e.preventDefault(); // will stop sll default settings including the item being added to the url when submitted. 
@@ -31,11 +31,22 @@ function handleSubmit(e) {
 
 function displayItems() {
     console.log(items);
-    const html = items.map(item => `<li class="shopping-item">
-    <input type="checkbox">
-    <span class="itemName">${item.name}</span> 
-    <button aria-label="Remove ${item.name}">&times;</button>
-    </li>`).join('');
+    const html = items
+        .map(
+            item => `<li class="shopping-item">
+            <input 
+                value="${item.id}" 
+                type="checkbox"
+                ${item.complete ? 'checked' : ''}
+            >
+            <span class="itemName">${item.name}</span> 
+            <button 
+                aria-label="Remove ${item.name}"
+                value="${item.id}"
+            >&times;</button>
+    </li>`
+    )
+    .join('');
     list.innerHTML = html; // this will add the items to the list in the DOM
     // reminder that span is a container that is a inline element used to mark up a part of a document. 
     // aria label will allow people who are using readers to hear the item they will be marking or removing. 
@@ -62,7 +73,19 @@ function restoreFromLocalStorage() {
 }
 
 function deleteItem(id) {
-    console.log('deleting item');
+    console.log('deleting item', id);
+    // update our items without the "deleted item"
+    // let items in line 9 allows us to change the items variable within this scope. 
+    items = items.filter(item => item.id !== id); // This will show the item list in the console with all of the items except the one with the id that was selected. 
+    console.log(items);
+    list.dispatchEvent(new CustomEvent('itemsUpdated'));
+}
+
+function markAsComplete(id) {
+    console.log('Marking as complete', id);
+    const itemRef = items.find(item => item.id === id); 
+    itemRef.complete = !itemRef.complete; // setting to the bang (false) version of itself. 
+    list.dispatchEvent(new CustomEvent('itemsUpdated'));
 }
 
 // whenever you want an event to listen for a submit you do not need to use event click etc. 
@@ -71,8 +94,12 @@ list.addEventListener('itemsUpdated', displayItems);
 list.addEventListener('itemsUpdated', mirrorToLocalStorage);
 // Event Delegation: we listen for the click on the list <ul> but then delegate the click over to the button if that is what was clicked.
 list.addEventListener('click', function(e) { // Will allow us to add new items to the list and still use the deleting functions.
+    const id = parseInt(e.target.value);
     if(e.target.matches('button')) {
-        deleteItem();
+        deleteItem(id); // parseInt return the value from a string. Troubleshoot this will help allow !== or === since these are sensitive to values with different types. 
+    }
+    if(e.target.matches('input[type="checkbox"]')) {
+        markAsComplete(id);
     }
 })
 restoreFromLocalStorage();
