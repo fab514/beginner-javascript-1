@@ -18,12 +18,21 @@ function Gallery(gallery) {
             return; // stop the fuction from running
         }
         modal.classList.add('open'); // if there is not already a css class match running: this will add a class of 'open'
-    }
+    
+        // Event listeners to be bound when we open the modal
+        window.addEventListener('keyup', handleKeyUp);
+        nextButton.addEventListener('click', showNextImage);
+        prevButton.addEventListener('click', showPrevImage);
+}
 
     function closeModal() {
         console.info('Closing Modal...');
         modal.classList.remove('open');
         // TODO: add event listeners for clicks and keyboard..
+        // Event listeners boud to when we close the modal
+        window.addEventListener('keyup', handleKeyUp);
+        nextButton.addEventListener('click', showNextImage);
+        prevButton.removeEventListener('click', showPrevImage);
     }
 
     function handleClickOutside(e) {
@@ -34,6 +43,18 @@ function Gallery(gallery) {
 
     function handleKeyUp(e) {
         if (e.key === 'Escape') closeModal();
+        if (e.key ===  'ArrowRight') showNextImage();
+        if (e.key === 'ArrowLeft') showPrevImage();
+    }
+
+    function showNextImage() {
+        showImage(currentImage.nextElementSibling ||
+        gallery.firstElementChild);
+    }
+
+    function showPrevImage() {
+        showImage(currentImage.previousElementSibling ||
+        gallery.lastElementChild);
     }
 
     function showImage(el) { // el image element
@@ -57,7 +78,7 @@ function Gallery(gallery) {
     );
 
     modal.addEventListener('click', handleClickOutside);
-    window.addEventListener('keyup', handleKeyUp);
+    
 }
 // Allow to use the same functions by using closure. You can still access a function after it has been run. 
 
