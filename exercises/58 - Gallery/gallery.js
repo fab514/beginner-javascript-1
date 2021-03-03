@@ -5,7 +5,7 @@ function Gallery(gallery) {
 
     // select the element we need
     const images = Array.from(gallery.querySelectorAll('img'));
-    const modal = document.querySelectorAll('.modal'); // Reminder that a modal is a dialogue box or pop up window. In this case shows up when you click a picture to make it bigger. 
+    const modal = document.querySelector('.modal'); // Reminder that a modal is a dialogue box or pop up window. In this case shows up when you click a picture to make it bigger. 
     const prevButton = modal.querySelector('.prev');
     const nextButton = modal.querySelector('.next');
 
