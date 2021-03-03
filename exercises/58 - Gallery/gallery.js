@@ -42,9 +42,9 @@ function Gallery(gallery) {
     }
 
     function handleKeyUp(e) {
-        if (e.key === 'Escape') closeModal();
-        if (e.key ===  'ArrowRight') showNextImage();
-        if (e.key === 'ArrowLeft') showPrevImage();
+        if (e.key === 'Escape') return closeModal(); // Use return to stop the function to continue to run if closeModal has been used. This will save unnecessary data use. 
+        if (e.key ===  'ArrowRight') return showNextImage();
+        if (e.key === 'ArrowLeft') return showPrevImage();
     }
 
     function showNextImage() {
