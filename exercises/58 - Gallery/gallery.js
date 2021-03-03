@@ -10,6 +10,16 @@ function Gallery(gallery) {
     const nextButton = modal.querySelector('.next');
     let currentImage;
 
+    function openModal() {
+        console.info('Opening Modal...');
+        // First check if the modal is already open
+        if (modal.matches('.open')) { // matches with a css class that is already running
+            console.info('Modal already open');
+            return; // stop the fuction from running
+        }
+        modal.classList.add('open'); // if there is not already a css class match running: this will add a class of 'open'
+    }
+
     function showImage(el) { // el image element
         if(!el) {
             console.info('no image to show');
@@ -22,6 +32,7 @@ function Gallery(gallery) {
         modal.querySelector('figure p').textContent = 
         el.dataset.description;
         currentImage = el;
+        openModal();
     }
 
     // for events you need to match the name event = event or e = e
