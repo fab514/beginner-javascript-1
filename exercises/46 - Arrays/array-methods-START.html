@@ -254,9 +254,13 @@
     // .every means everything in the array meets the criteria
 
     // sort the toppings alphabetically with sort()
+    
+      // By default: sort will turn each item in the array into a string and sort the string. 
+
     // Example of sorting numbers. // When using sort the numbers will be tuned into a string and sorted that way. 1, 100 etc. To sort by number you need a callback function
     const numbers = [1, 2, 100, 3, 200, 400, 155]
     const numbersSorted = numbers.sort((firstItem, secondItem) => firstItem - secondItem);
+    // sort can take in a campare function. 
     console.log(numbersSorted);
 
     console.log(toppings.sort()); // Sorts our topping list. 
