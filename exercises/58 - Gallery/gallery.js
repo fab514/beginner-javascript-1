@@ -8,21 +8,26 @@ function Gallery(gallery) {
     const modal = document.querySelector('.modal'); // Reminder that a modal is a dialogue box or pop up window. In this case shows up when you click a picture to make it bigger. 
     const prevButton = modal.querySelector('.prev');
     const nextButton = modal.querySelector('.next');
+    let currentImage;
 
-    function showImage(el) {
+    function showImage(el) { // el image element
         if(!el) {
             console.info('no image to show');
             return;
         }
         // update the modal with this info
         console.log(el);
+        modal.querySelector('img').src = el.src; // The src is coming from the html meta data
+        modal.querySelector('h2').textContent = el.title; // title is coming from the html meta data
+        modal.querySelector('figure p').textContent = 
+        el.dataset.description;
+        currentImage = el;
     }
 
-    function handleImageClick(event) {
-        showImage(event.currentTarget);
-    }
-
-    images.forEach(image => image.addEventListener('click', handleImageClick));
+    // for events you need to match the name event = event or e = e
+    images.forEach(image => image.addEventListener('click', e => showImage
+    (e.currentTarget))
+    );
 }
 // Allow to use the same functions by using closure. You can still access a function after it has been run. 
 
