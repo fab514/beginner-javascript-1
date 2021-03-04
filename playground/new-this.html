@@ -9,7 +9,32 @@
 </head>
 
 <body>
+  <!-- used new-this terms with object oriented programming -->
+  <!-- instanceof is a comparison operator that will check whether an instance is a specified type  -->
+  <!-- when adding new to any of our types it turns the type into an object that you can use different prototypes on. -->
+  <script>
+    const myDate = new Date('August 11, 2025'); // Date does not have it's own literal syntax so the new keyword must be added
+    console.dir(myDate);
+    console.log(myDate.getFullYear());
 
+    // As a literal syntax brackets show if someting will be an array or object. 
+    const names = new Array('wes', 'kait');
+    // const names = ['wes', 'kait'];
+    const wes = new Object({name: 'wes'});
+    // const wes = {name: 'wes'};
+    const span = document.createElement('span'); // You do not need to put new in front of document.createElement because using document or creating other kind of html will be considered new. 
+
+    function Pizza() {
+      console.log('Making a pizza');
+    }
+
+    // You can put new in front of a function, such as the Pizza function you will make it into an object with an instance of the function you made it from. 
+    const pepperoniPizza = new Pizza();
+    console.log(pepperoniPizza);
+    console.log(pepperoniPizza.constructor); // .constructor will show what function made pepperoniPizza
+    
+    // span.constructor will show that the span was created from a HTML span function
+  </script>
 </body>
 
 </html>
