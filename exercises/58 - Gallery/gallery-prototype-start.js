@@ -17,10 +17,16 @@ function Gallery(gallery) {
     this.prevButton = this.modal.querySelector('.prev');
     this.nextButton = this.modal.querySelector('.next');
 
+    // When you are using this you are creating another function. When you use addEventListener you need reference to that function, don't use an arrow function for this and event listeners, use bind.  
+
     // bind our methods to the instance when we need them
     // bind allows to explicitly supply what this is equal to. We are creating a new function which this is bound to.
     // reminder that this is equal to the instance that was 
     this.showNextImage = this.showNextImage.bind(this); 
+    this.showPrevImage = this.showPrevImage.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+
 
     
     // These are our event listeners!
