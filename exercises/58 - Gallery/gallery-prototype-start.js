@@ -17,6 +17,11 @@ function Gallery(gallery) {
     this.prevButton = this.modal.querySelector('.prev');
     this.nextButton = this.modal.querySelector('.next');
 
+    // bind our methods to the instance when we need them
+    // bind allows to explicitly supply what this is equal to. We are creating a new function which this is bound to.
+    // reminder that this is equal to the instance that was 
+    this.showNextImage = this.showNextImage.bind(this); 
+
     
     // These are our event listeners!
     // for events you need to match the name event = event or e = e
@@ -96,8 +101,7 @@ Gallery.prototype.showImage = function(el) { // el image element
     console.log(el);
     this.modal.querySelector('img').src = el.src; // The src is coming from the html meta data
     this.modal.querySelector('h2').textContent = el.title; // title is coming from the html meta data
-    this.modal.querySelector('figure p').textContent = 
-    this.el.dataset.description;
+    this.modal.querySelector('figure p').textContent = el.dataset.description;
     this.currentImage = el;
     this.openModal();
 }
