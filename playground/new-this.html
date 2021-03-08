@@ -31,10 +31,35 @@
     function Pizza(toppings = [], customer) {
       console.log('Making a pizza');
       // Save the toppings that were passed in, to this instance of the pizza
+      // in order to attach properties by adding this keyword to make all instance properties. Each pizza will have their own property.  
       this.toppings = toppings;
       this.customer = customer;
       this.id = Math.floor(Math.random() * 16777215).toString(16); // website Wes uses to find a random code is 'Random Hex Color Code' 
+      this.slices = 10;
+      // EACH PIZZA IN THE FILE WILL HAVE THERE OWN COPY OF THE FUNCTION WHICH CAN SLOW DOWN THE WEBSITE. MOVE THE FUNCTION TO THE PROTOTYPE.
+      // this.eat = function() {
+      //   if(this.slices > 0) {
+      //    this.slices = this.slices - 1; 
+      //    console.log(`CHOMP you now have ${this.slices} left!`)
+      //    return this.slices;
+      //   } else {
+      //     console.log(`Sorry! No slices left`);
+      //   } 
+      // }
     }
+
+    // prototype look up will let the child elements within the parent Pizza to have access to the function on the prototype. 
+    Pizza.prototype.eat = function() {
+        if(this.slices > 0) {
+         this.slices = this.slices - 1; 
+         console.log(`CHOMP you now have ${this.slices} left!`)
+         return this.slices;
+        } else {
+          console.log(`Sorry! No slices left`);
+        }  
+    }
+      
+
     /*
     // You can put new in front of a function, such as the Pizza function you will make it into an object with an instance of the function you made it from. 
     const pepperoniPizza = new Pizza();
@@ -42,7 +67,7 @@
     console.log(pepperoniPizza.constructor); // .constructor will show what function made pepperoniPizza
     // span.constructor will show that the span was created from a HTML span function
     */
-
+    // taking a function and adding a new keyword will return an object that is an instance of that object. 
    const pepperoniPizza = new Pizza(['pepperoni'], 'Wes Bos');
    const canadianPizza = new Pizza(['pepperoni', 'mushrooms', 'onion'], 'Kait Bos'); 
    // this is used for storing internal data and functionality on each of the instances. 
