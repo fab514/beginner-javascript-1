@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+# New-this
+- new-this terms with object oriented programming
+- instanceof is a comparison operator that will check whether an instance is a specified type 
+- when adding new to any of our types it turns the type into an object that you can use different prototypes on.
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>New, This, Prototypes and Classes</title>
-  <link rel="stylesheet" href="../base.css">
-</head>
+    <button class="one">Button 1</button>
+    <button class="two">Button 2</button>
 
-<body>
-
-  <button class="one">Button 1</button>
-  <button class="two">Button 2</button>
-
-  <!-- used new-this terms with object oriented programming -->
-  <!-- instanceof is a comparison operator that will check whether an instance is a specified type  -->
-  <!-- when adding new to any of our types it turns the type into an object that you can use different prototypes on. -->
-  <script>
+  ```js
     const myDate = new Date('August 11, 2025'); // Date does not have it's own literal syntax so the new keyword must be added
     console.dir(myDate);
     console.log(myDate.getFullYear());
@@ -36,6 +26,7 @@
       this.customer = customer;
       this.id = Math.floor(Math.random() * 16777215).toString(16); // website Wes uses to find a random code is 'Random Hex Color Code' 
       this.slices = 10;
+      
       // EACH PIZZA IN THE FILE WILL HAVE THERE OWN COPY OF THE FUNCTION WHICH CAN SLOW DOWN THE WEBSITE. MOVE THE FUNCTION TO THE PROTOTYPE.
       // this.eat = function() {
       //   if(this.slices > 0) {
@@ -49,6 +40,7 @@
     }
 
     // prototype look up will let the child elements within the parent Pizza to have access to the function on the prototype. 
+    // It will search within the scope first before looking outside. 
     Pizza.prototype.eat = function() {
         if(this.slices > 0) {
          this.slices = this.slices - 1; 
@@ -59,6 +51,7 @@
         }  
     }
       
+    
 
     /*
     // You can put new in front of a function, such as the Pizza function you will make it into an object with an instance of the function you made it from. 
@@ -108,6 +101,3 @@
     */
 
   </script>
-</body>
-
-</html>
