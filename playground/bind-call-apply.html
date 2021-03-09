@@ -9,6 +9,53 @@
 </head>
 
 <body>
+  <p>Hey</p>
+  <div class="wrapper">
+    <p>Hey im in a wrapper</p>
+  </div>
+  <script>
+    const person = {
+      name: 'Felicia Brenner', 
+      sayHi() {
+        console.log(`hey ${this.name}`); 
+        return `hey ${this.name}`; 
+      }
+    }
+    // sayHi gets is this value by being a method. 
+    // This keyword will always look to the left of the dot. 
+    // sayHi is bound to person, person.sayHi() 
+    // sayHi will be bound to the window if you only list as sayHi() without the person
+
+    const jenna = { name: 'Jenna' };
+
+    const sayHi = person.sayHi.bind({ name: 'Harry'}); // In this case bind will go directly to 'Harry' and not 'Jenna' since it will search within it's scope first. 
+    // bound only works in the place where the method is being called not defined. 
+    // we can use the bind keyword to show where the method would be bound to. This is changed to what is passed through with .bind
+
+    // QS Example
+    // using bind will show what this is equal to, whether it is in a method or a function. 
+    // QS is a function that needs to know where to look inside for the selector whether it be the document(globally) or the wrapper(selector) (this)
+    // by calling bind against querySelector, we say when the $ function is run, use `document` as the `this` value. 
+    const $ = document.querySelector.bind(document);
+    const lookFor = document.querySelectorAll.bind(document);
+
+    const wrapper = document.querySelector('.wrapper');
+    const p = wrapper.querySelector('p');
+    console.log(p);
+    console.log($('p'));
+    console.log(lookFor('p')); // will give a node list of all the paragraphs in the document
+
+    const bill = {
+      total: 1000, 
+      calcuate(taxRate) {
+        return this.total + (this.total * taxRate);
+      }
+    }
+
+    const total = bill.calcuate(0.13);
+    console.log(total);
+
+  </script>
 
 </body>
 
