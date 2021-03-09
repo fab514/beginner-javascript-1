@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>New, This, Prototypes and Classes</title>
-  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="../../base.css">
 </head>
 
 <body>
@@ -26,6 +26,18 @@
     // const wes = {name: 'wes'};
     const span = document.createElement('span'); // You do not need to put new in front of document.createElement because using document or creating other kind of html will be considered new. 
 
+    String.prototype.sarcastic = function () { // when adding a method to a prototype you can use this new method with other instances.  
+      //make sarcastic
+      const sarcastic = this.split('').map((char, i) => {
+        if(i%2) {
+          return char.toUpperCase();
+        } else {
+          return char.toLowerCase();
+        }
+      }).join('');
+      return sarcastic;
+    }
+    
     function Pizza(toppings = [], customer) {
       console.log('Making a pizza');
       // Save the toppings that were passed in, to this instance of the pizza
@@ -55,6 +67,11 @@
           console.log(`Sorry! No slices left`);
         }  
     }
+
+    Pizza.prototype.describe = function () {
+      return `This pizza is for ${this.customer} with the toppings ${this.toppings.join(',')} and there are ${this.slices} left`;
+    }
+    
 
     /*
     const pepperoniPizza = new Pizza();
