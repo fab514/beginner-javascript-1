@@ -10,7 +10,23 @@
 
 <body>
   <script>
+    function makePizza(toppings) { // function is called immediately but doesn't return until it's ready. this way, not holding up the rest of the code. 
+      const pizzaPromise = new Promise(function(resolve, reject) {
+        // When you are ready, you can resolve this promise
+        resolve(`Here is your pizza, with toppings ${toppings.join(' ')}`);
+        // if something went wrong, we can reject this promise
+      });
+      return pizzaPromise;
+    }
 
+    const pepperoniPromise = makePizza(['pepperoni']);
+    const canadianPromise = makePizza(['pepperoni, mushrooms, onions']);
+   
+    pepperoniPromise.then(function (pizza) {
+      console.log('Ahh got it!');
+      console.log(pizza);
+    });
+    
   </script>
 </body>
 
