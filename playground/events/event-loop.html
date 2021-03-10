@@ -32,6 +32,10 @@
     }
     .go.green {
       background: green;
+      color: white;
+    }
+    .go.fadeOut {
+      opacity: 0;
     }
   </style>
   <div class="go">Click Me</div>
@@ -69,16 +73,21 @@
             // make it green after 0.3s
             setTimeout(function () {
               el.classList.add('green');
+              // fade out after 0.5s
+              setTimeout(function () {
+                el.classList.add('fadeOut');
+              }, 500)
             }, 300);
           }, 250);
         }, 500);
       }, 2000);
     });
+    // 'callback hell' All of the callbacks must be nested inside of each other because each one is needed to make the other work. 
     
     
     
     
-    // fade out after 0.5s
+    
     // Finish!
   </script>
 </body>
