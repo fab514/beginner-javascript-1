@@ -27,25 +27,52 @@
     // The then() method returns a Promise. It takes up to two arguments: callback functions for the success and failure cases of the Promise.
     // Promise is the 'promise land' where everything can be all at one level instead of keep layering nested elements. 
     // Promise chain
-    console.log('First');
-    makePizza(['pepperoni'])
-      .then(function(pizza) { // 1 'pepperoni' is ran first with pizza function, 
+    // console.log('First');
+    // makePizza(['pepperoni']) // these will run one at a time or sequentially
+    //   .then(function(pizza) { // 1 'pepperoni' is ran first with pizza function, 
+    //     console.log(pizza);
+    //     return makePizza(['ham', 'cheese']); // 2 after is 'ham and cheese' which is inside
+    //   })
+    //   .then(function (pizza) {
+    //     console.log(pizza);
+    //     return makePizza(['hot peppers', 'onion', 'feta']); // 3 lastly, hot peppers, onion, feta
+    //   })
+    //   .then(function (pizza) {
+    //     console.log(pizza);
+    //   })
+    //   .then(function (pizza) { // this will be faster to run since there are no values
+    //     console.log(pizza);
+    //     return makePizza(); 
+    //   })
+    //   .then(function (pizza) { // this will take longer because there are several values
+    //     console.log(pizza);
+    //     return makePizza(['hot peppers', 'onion', 'feta', 'hot peppers', 'onion', 'feta', 'hot peppers', 'onion', 'feta', 'hot peppers', 'onion', 'feta']);
+    //   }).then(pizza => {
+    //     console.log('All done! Here is your last pizza');
+    //     console.log(pizza);
+    //   });
+    // console.log('lastly'); // 'first' and 'lastly' will run first in the callstack because the functions will be sent to api
+
+      // Run them concurrently
+      const pizzaPromise1 = makePizza(['hot peppers', 'onion', 'feta']);
+      const pizzaPromise2 = makePizza(['hot peppers', 'onion', 'feta', 'hot peppers', 'onion', 'feta', 'hot peppers', 'onion', 'feta', 'hot peppers', 'onion', 'feta']);
+      const pizzaPromise3 = makePizza(['ham', 'cheese']);
+
+      // MEGA PROMISE- this is a promise that will only run when all of the mini promises (or instance of the mama) are all ready
+      const dinnerPromise = Promise.all([pizzaPromise1, pizzaPromise2, pizzaPromise3]);
+      
+      // the mega promise will return as an array of the mini promises
+      dinnerPromise.then(function([hottie, garbagePail, hamAndCheese]) { // destructure this argument directly using square brackets. Destruct into different items
+        console.log(hottie, garbagePail, hamAndCheese);
+      });
+
+      const firstPizzaPromise = Promise.race([pizzaPromise1, pizzaPromise2, pizzaPromise3]);
+      // .race will wait for the first one to finish rendering
+
+      firstPizzaPromise.then(pizza => {
+        console.log('You must be hungry, here is the first one ready');
         console.log(pizza);
-        return makePizza(['ham', 'cheese']); // 2 after is 'ham and cheese' which is inside
       })
-      .then(function (pizza) {
-        console.log(pizza);
-        return makePizza(['hot peppers', 'onion', 'feta']); // 3 lastly, hot peppers, onion, feta
-      })
-      .then(function (pizza) {
-        console.log(pizza);
-      })
-    console.log('lastly'); // 'first' and 'lastly' will run first in the callstack because the functions will be sent to api
-
-
-
-
-
     // const pepperoniPromise = makePizza(['pepperoni']);
     // const canadianPromise = makePizza(['pepperoni, mushrooms, onions']);
     
