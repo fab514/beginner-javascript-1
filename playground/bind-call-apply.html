@@ -17,6 +17,7 @@
     const person = {
       name: 'Felicia Brenner', 
       sayHi() {
+        console.log(this);
         console.log(`hey ${this.name}`); 
         return `hey ${this.name}`; 
       }
@@ -47,13 +48,44 @@
 
     const bill = {
       total: 1000, 
-      calcuate(taxRate) {
+      calcuate: function (taxRate) {
         return this.total + (this.total * taxRate);
+      }, 
+      describe(mealType, drinkType, taxRate) {
+        console.log(`Your meal of ${mealType} with a drink of ${drinkType} was ${this.calcuate(taxRate)}`);
       }
     }
 
     const total = bill.calcuate(0.13);
-    console.log(total);
+    const calc = bill.calcuate.bind({ total: 500 }, 0.06); // 'bind' a function that you can call later. 
+
+    console.log(calc()); // calling a function
+    const total2 = bill.calcuate.call({ total: 500 }, 0.06);
+    console.log(total2);
+    // keyword 'call' will bind a function and call it immediately 
+
+    const total3 = bill.calcuate.apply({ total: 325}, [0.06]);
+    console.log(total3);
+
+    const myMeal = bill.describe.call(bill, 'pizza', 'beer', 0.13);
+    console.log(myMeal);
+    const myMeal2 = bill.describe.apply(bill, ['pizza', 'beer', 0.13]); // the array is passed as one argument and gives an array of values
+    console.log(myMeal2);
+    // The apply() method calls a function with a given 'this' value, and arguments provided as an array (or an array-like object).
+
+    /*
+    const bill = {
+      total: 1000, 
+      calcuate(taxRate, tipRate) {
+        return this.total + (this.total * taxRate);
+      }
+    }
+    const total = bill.calcuate(0.13);
+    const calc = bill.calcuate.bind({ total: 500 }, 0.06, 0.15);
+    console.log(calc(0.13));
+    // additional arguments to bind will always be one off with the arguments passed. The first argument is the 'this' object. 
+    // Above arguments {total: 500} is 'this', 0.06 is taxRate and 0.15 is tipRate. 
+    */
 
   </script>
 
