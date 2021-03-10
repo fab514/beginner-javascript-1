@@ -21,6 +21,18 @@
     .go.circle {
       border-radius: 50%;
     }
+    .go.purple {
+      background:purple;
+    }
+    .go.square {
+      margin: 5rem;
+      padding: 5rem;
+      width: 25rem;
+      height: 25rem;
+    }
+    .go.green {
+      background: green;
+    }
   </style>
   <div class="go">Click Me</div>
   <script>
@@ -48,13 +60,24 @@
       // 2. make it a circle after 2 seconds.  
       setTimeout(function() {
         el.classList.add('circle');
-        // 3. make red after 0.5s
+        // 3. make purple after 0.5s
+        setTimeout(function () {
+          el.classList.add('purple');
+          // make it square 0.25s
+          setTimeout(function () {
+            el.classList.remove('circle');
+            // make it green after 0.3s
+            setTimeout(function () {
+              el.classList.add('green');
+            }, 300);
+          }, 250);
+        }, 500);
       }, 2000);
     });
     
     
-    // make it square 0.25s
-    // make it purple after 0.3s
+    
+    
     // fade out after 0.5s
     // Finish!
   </script>
