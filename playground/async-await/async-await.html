@@ -5,11 +5,84 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Async Await</title>
-  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="../../base.css">
 </head>
 
 <body>
   <script>
+    const wait = (ms = 0) => new Promise(resolve => setTimeout(resolve, ms));
+    // Async await is a type of promise
+
+    function makePizza(toppings = []) { // function is called immediately but doesn't return until it's ready. this way, not holding up the rest of the code. 
+      return new Promise(function(resolve, reject) { // you can put the return right away and take away the variable. 
+        // reject if people try with pineapple
+        if(toppings.includes('pineapple')) {
+          reject('Seriously Get Out!');
+        }
+        const amountOfTimeToBake = 500 + (toppings.length * 200);
+        // Wait 1 second for pizza to cook: 
+        setTimeout(function () {
+        // When you are ready, you can resolve this promise
+        resolve(`Here is your pizza, with toppings ${toppings.join(',')}`);
+        // if something went wrong, we can reject this promise
+      }, amountOfTimeToBake);
+        
+      });
+    }
+
+
+    // you can only use async await within functions that are marked async
+    async function go() {
+      console.log('Starting');
+      await wait(2000); // await on a promise will temporarily stop the function from running until the promise has been resolved. 
+      console.log('Running');
+      await wait(200);
+      console.log('Ending');
+    }
+    // you can't use top level await it must be within an async function. 
+
+    // go();
+    // await is asynchronously waiting for the function to be done. Will not pause the rest of the chain.
+    // to make multiple promises run at the same time
+    async function makeDinner() {
+      const pizzaPromise1 = makePizza(
+        ['pepperoni']);  
+      const pizzaPromise2 = makePizza(
+        ['mushrooms']);
+      // await the mama promise
+      const [pep, mush] = await Promise.all(
+        [pizzaPromise1, pizzaPromise2]);
+      console.log(pep, mush);
+    }
+
+    makeDinner();
+
+    // function declarations
+    async function fd() {}
+
+    // arrow function
+    const arrowfn= async () => {}
+
+    // callback functions
+    window.addEventListener('click', async function () {
+
+    })
+
+    // methods
+    const person = {
+      sayHi: async function() {
+
+      },
+      // method shorthand
+      async sayHello() {
+
+      },
+    // function property
+    sayHey: async () => {
+      
+    },
+  }
+    
 
   </script>
 </body>
