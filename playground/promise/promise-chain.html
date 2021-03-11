@@ -40,25 +40,49 @@
   </style>
   <div class="go">Click Me</div>
   <script>
-    // Look up video Phil Roberts What the heck is the event loop anyway. HE also made a tool called Loupe
-    // in js you can only run one thing at a time, this is called single threaded
-    // function after running the last line. This will cause the code to be out of order. 
+    const wait = (ms = 0) => new Promise(resolve => setTimeout(resolve, ms));
 
-    // console.log('Starting');  
-    // setTimeout(function () {
-    //   console.log('Running');
-    // }, 2000);
-    // console.log('Ending')
-
-    /*
-    Callstack is what js is doing, Web APIs are things that are waiting or listening for, 
-    Callback queue is where it goes after finishing in the api (like a timer or button), 
-    the callstack grabs anything in the queue when it has nothing left to do. 
-    */
-
+    wait(200).then(() => {
+      console.log('Done!');
+    })
     const go = document.querySelector('.go');
+
+    function animate(e) {
+      const el = e.currentTarget;
+      el.textContent = 'GO!'
+      // 2. make it a circle after 2 seconds.
+      wait(200)
+      .then(() => {
+        el.classList.add('circle');
+        return wait(500);
+      })
+      .then(() => {
+      // 3. make purple after 0.5s
+        el.classList.add('purple');
+        return wait(250);
+      })   
+      .then(() => {
+      // 4. make it square 0.25s
+        el.classList.remove('circle');
+        return wait(300);
+      })
+      .then(() => {
+        // 5. make it green after 0.3s
+          el.classList.add('green');
+          return wait(500);
+      })
+      .then(() => {
+        // 6. fade out after 0.5s
+          el.classList.add('fadeOut');
+      })
+    }
+
+    go.addEventListener('click', animate);
+
+
+    
     // 1. Change the text to GO when clicked. 
-    go.addEventListener('click', function(e) {
+    go.addEventListener('clickxxxx', function(e) {
       const el = e.currentTarget;
       el.textContent = 'GO!'
       // 2. make it a circle after 2 seconds.  
@@ -67,13 +91,13 @@
         // 3. make purple after 0.5s
         setTimeout(function () {
           el.classList.add('purple');
-          // make it square 0.25s
+          // 4. make it square 0.25s
           setTimeout(function () {
             el.classList.remove('circle');
-            // make it green after 0.3s
+            // 5. make it green after 0.3s
             setTimeout(function () {
               el.classList.add('green');
-              // fade out after 0.5s
+              // 6. fade out after 0.5s
               setTimeout(function () {
                 el.classList.add('fadeOut');
               }, 500)
@@ -82,13 +106,7 @@
         }, 500);
       }, 2000);
     });
-    // 'callback hell' All of the callbacks must be nested inside of each other because each one is needed to make the other work. 
-    
-    
-    
-    
-    
-    // Finish!
+   
   </script>
 </body>
 
