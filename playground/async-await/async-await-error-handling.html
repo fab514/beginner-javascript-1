@@ -31,6 +31,57 @@
         // if something went wrong, we can reject this promise;
       });
     }
+    /*
+    // Try and catch method
+    async function go() {
+      try { // Any code that goes wrong inside the try brackets will be sent to the catch brackets without breaking the rest of the application.
+        const pizza = await makePizza(['pineapple']);
+        console.log(pizza);
+      } catch (err) {
+        console.log('Ohhh noooo!');
+        console.log(err);
+      }  
+      // downfall of try and catch is that the benefit of async is added back with more wrapping brackets. 
+    }
+    */
+
+    function handleError(err) {
+      console.log('ohhhh Nooo!!!')
+      console.log(err);
+    }
+    /*
+    // uses catch inside definition of a function.
+    async function go() {
+      const pizza = await makePizza(['pineapple']).catch(handleError);
+      console.log(pizza);
+    }
+    // using 'await' to get the data of the promise instead of 'then', and using 'catch' to handle the error when you define the function
+    go();
+    */
+
+  // using catch when calling a function.
+  // when you mark a function as async, it will automatically return a promise. 
+   async function go() {
+     const pizza = await makePizza(['pineapple']);
+     console.log(pizza);
+   }
+   // Using the catch when calling the function instead of using it when defining the function.
+   // catch error at run time
+  //  go().catch(handleError);
+   // this is the method that wes likes to use. 
+   // make a safe function with a HOF
+
+   function makeSafe(fn) {
+     return function() {
+       fn().catch(errorHandler)
+     }
+   }
+   const safeGo = makeSafe(go, handleError);
+   safeGo();
+
+   // higher order function-  a function that return another function. 
+   // this is a function that returns a new function that is the original function with the catch attached to it. 
+    // benefit make the safeGo once and use it several times in a application 
 
   </script>
 </body>
