@@ -4,7 +4,7 @@
 const wait = (ms = 0) => new Promise(resolve => setTimeout(resolve, ms));
 
 async function destroyPopup(popup) { 
-    popup.classList.remove('open');
+    popup.classList.remove('open'); // remove 'open' class from the classlist.
     await wait(1000);
     // remove popup from the dom: it is not removed from js memory
     popup.remove();
@@ -20,7 +20,7 @@ function ask(options) {
         const popup = document.createElement('form'); 
         popup.classList.add('popup');
         popup.insertAdjacentHTML(
-            'afterbegin', 
+            'afterbegin', // after opening tag of form (popup)
 
             `<fieldset> 
                 <label>${options.title}</label>
@@ -54,14 +54,14 @@ function ask(options) {
             function(e) {
             e.preventDefault();
             console.log('SUBMITTED!');
-            resolve(e.target.input.value)
+            resolve(e.target.input.value);
             // remove it from the dom entirely
             destroyPopup(popup);
             }, 
-            { once: true } // will make it work once after submitting a certain text
+            { once: true } // once the eventListener has been called and used it removes itself.
         );
-        // Fourth, when someone does submit it, resolve the data that was in the input box
 
+        // Fourth, when someone does submit it, resolve the data that was in the input box
         // insert that popup into the DOM
         document.body.appendChild(popup);
         // put a very small timeout before the open class, to give the function a little more time to run in event loop
@@ -95,7 +95,7 @@ Promise.all(questions.map(ask)).then(data => { // ask makes the map array a prom
 }); // array of the three sequential promises in order. 
 */
 
-function asyncMap(array, callback) { // can be used multiple times. flexible to many different arrays
+async function asyncMap(array, callback) { // can be used multiple times. flexible to many different arrays
     // make an array to store results
     const results = [];
     // loop over our array
@@ -107,7 +107,7 @@ function asyncMap(array, callback) { // can be used multiple times. flexible to 
 }
 
 async function go() {
-    const answers = await asyncMap(question, ask);
+    const answers = await asyncMap(questions, ask);
     console.log(answers);
 }
 
