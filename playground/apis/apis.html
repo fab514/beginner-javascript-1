@@ -5,12 +5,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>APIs</title>
-  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="../../base.css">
 </head>
 
 <body>
+  <p class="user"></p>
   <script>
+    // API Application Programming Interface (fetching data from the api and display it on your browser.)
+    // Some need an API key to get the data. github.com/publicapis
+    // AJAX Asyncronous Javascript and XML (xml a way to recieve data similar to HTML: Not really used)
+    // JSON Javascript Object Notation
+    // The data in an API is all a string. To turn the data into an object use JSON.parse(data)
+    // const dataObj = JSON.parse(data) turns into a variable. Will allow you pull data from a server into your own. dataObj.company, dataObj.login
+    
+    // endpoint is the url you need to use to get the data
+    const baseEndpoint = 'https://api.github.com';
+    const usersEndpoint = `${baseEndpoint}/users`;
+    const userEl = document.querySelector('.user');
+    
+    async function displayUser(username) {
+     userEl.textContent = 'loading...';
+    const response = await fetch(`${usersEndpoint}/${username}`); // first promise gets the response
+    const data = await response.json(); // second promise take the other promise and turns it into a JSON
+      console.log(data);
+      console.log(data.blog);
+      console.log(data.name);
+      console.log(data.location);
+      userEl.textContent = `${data.name} - ${data.blog}`; // Shows the data on the DOM
+    }
 
+    function handleError(err) {
+      console.log('OH NOO!!')
+      console.log(err);
+      userEl.textContent = `Something went wrong: ${err}`;
+    }
+
+    displayUser('stolinski').catch(handleError);
+    
+
+    
+  
+    // when fetch is done downloading it will turn into a JSON
   </script>
 </body>
 
