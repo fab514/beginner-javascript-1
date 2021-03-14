@@ -9,6 +9,7 @@ function getRandomBetween(min = 20, max = 150, randomNumber = Math.random()) { /
 //     return a + b;
 // }
 
+/*
 // async for of loop
 async function draw(el) {
     const text = el.textContent;
@@ -22,6 +23,30 @@ async function draw(el) {
         await wait(amountOfTimeToWait);
     }
 }
+*/
 
-// recursion
+// recursion- a function calling itself until it reaches a exit condition
+function draw(el) {
+    let index = 1;
+    const text = el.textContent;
+    const { typeMin, typeMax } = el.dataset;
+    const amountOfTimeToWait = getRandomBetween(typeMin, typeMax);
+    async function drawLetter() {
+        el.textContent = text.slice(0, index);
+        index += 1;
+
+        // exit condition
+        await wait (amountOfTimeToWait);
+        if(index <= text.length) {
+            drawLetter();
+            // wait for some time
+        }
+
+    }
+drawLetter();
+
+}
+// when this function draw runs, kick off drawLetter
+
+
 document.querySelectorAll('[data-type').forEach(draw);
