@@ -7,6 +7,3 @@ Install parcel at the fixed version.
 `npm i parcel@1.12.3 --save-dev`
 
 Everything should work now!
-
-"start": "parcel index.html"
-Use `npm run start` to check if it running
