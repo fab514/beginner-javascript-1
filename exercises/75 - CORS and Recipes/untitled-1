@@ -1,0 +1,44 @@
+http://www.recipepuppy.com/api
+
+? (parameters start with a question mark)
+i=onions,garlic (comma delimited ingrediants)
+& (& between each parameter)
+q=omlet (normal search query)
+&
+p=3 (page)
+
+
+(format=xml (if you don't want the format to be json))
+
+CORS 
+CrossOrigin (domain names)
+
+Websites cannot talk to each otehr from one domain name to another domain name.  (security issue)
+wesbos.com <-> bank.com (no)
+
+CORS Policy
+wesbos.com is allowed to ask for data from recipepuppy.com and we will return it safe
+
+Resource 
+Sharing
+
+localhost
+|
+|
+V
+CORS Proxy (yes!!)
+^
+|
+|
+recipepuppy.com
+
+localhost
+|
+V
+No NO
+^
+|
+recipepuppy.com
+
+Do not use for sensitive data make your own
+

@@ -1,7 +1,6 @@
 {
   "name": "dogrecipes",
   "version": "1.0.0",
-  "description": "",
   "main": "scripts.js",
   "scripts": {
     "start": "parcel index.html"
@@ -13,5 +12,9 @@
   },
   "browserslist": [
     "last 1 chrome versions"
-  ]
+  ],
+  "description": "",
+  "devDependencies": {
+    "parcel": "^1.12.3"
+  }
 }
