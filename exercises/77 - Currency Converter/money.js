@@ -1,5 +1,8 @@
 const fromSelect = document.querySelector('[name="from_currency"]');
+const fromInput = document.querySelector('[name="from_amount"]');
 const toSelect = document.querySelector('[name="to_currency"]');
+const toEl = document.querySelector('.to_amount');
+const form = document.querySelector('.app form');
 const endpoint = 'https://api.exchangeratesapi.io/latest';
 const ratesByBase = {};
 
@@ -48,18 +51,18 @@ function generateOptions(options) { // gives a dropdown menu of the different op
 }
 
 async function fetchRates(base = 'USD') { // needs a baserate
-  const res = await fetch(`${endpoint}?base=${base}`); // endpoint is the base at the endrs
-  const rates = await res.join();
+  const res = await fetch(`${endpoint}?base=${base}`); // endpoint is the base at the end
+  const rates = await res.json();
   return rates;
 }
 
-async function convert(amount, from, to) {
+async function convert(amount, from, to) { 
   // first check if we even have the rates to convert from that currency
   if(!ratesByBase[from]) {
     console.log(`Oh no, we dont have ${from} to convert to 4{to}. So gets go 
     get it!`
     );
-    const rates = fetchRates(from);
+    const rates = await fetchRates(from);
     console.log(rates);
     // store the rates for next time. 
     ratesByBase[from] = rates;
@@ -67,13 +70,33 @@ async function convert(amount, from, to) {
   // convert the amount they pass in
   const rate = ratesByBase[from].rates[to];
   const convertedAmount = rate * amount;
-  console.log(`${amount} ${from} is ${convertedAmount} in ${to}`); // will show as 100 CAD is 75.175... in USD
+  console.log(`${amount} ${from} is ${convertedAmount} in ${to}`); // will show as 100 CAD is 75.175... in USD // string or template literal
   return convertedAmount;
+}
+
+function formatCurrency(amount, currency) {
+  return Intl.NumberFormat('en-us', { 
+    style: 'currency', // formatter lines 79 and 80
+    currency
+  }).format(amount); // format function
+}
+async function handleInput(e) {
+  const rawAmount = await convert(
+    fromInput.value, 
+    fromSelect.value, 
+    toSelect.value
+  );
+  
+  toEl.textContent = formatCurrency(rawAmount, toSelect.value);
+  // console.log(e.target); // the input inside of the form where the event is being handled
+  // console.log(e.currentTarget); // current target is the form
 }
 
 const optionsHTML = generateOptions(currencies);
 // on page load populate the option elements
 fromSelect.innerHTML = optionsHTML;
 toSelect.innerHTML = optionsHTML;
+
+form.addEventListener('input', handleInput);
 
 // some api cap the amount of rates you can do per hour 
